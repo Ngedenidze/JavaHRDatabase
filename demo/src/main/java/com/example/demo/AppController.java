@@ -13,10 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -33,8 +31,6 @@ import javafx.scene.control.skin.TableHeaderRow;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.util.Locale;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -167,18 +163,16 @@ public class AppController implements Initializable{
         FilteredList<Employee> filteredData = new FilteredList<>(employeeSearchObservableList, b ->true);
 
         //Filter for ID search
-        IDSearchTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(Employee -> {
-                if (newValue.isEmpty() || newValue.isBlank()) {
-                    return true;
-                }
-                String searchKeyword = newValue.toLowerCase();
+        IDSearchTF.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(Employee -> {
+            if (newValue.isEmpty() || newValue.isBlank()) {
+                return true;
+            }
+            String searchKeyword = newValue.toLowerCase();
 
-                //filtering out by each element of Employee class
-                return Employee.getEmployee_id().toString().contains(searchKeyword); //Found a match is first name
+            //filtering out by each element of Employee class
+            return Employee.getEmployee_id().toString().contains(searchKeyword); //Found a match is first name
 
-            });
-        });
+        }));
 
         //Filter for first name search
         fNameSearchTF.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(Employee -> {
@@ -258,10 +252,12 @@ public class AppController implements Initializable{
 
     }
 
+/*
     @FXML
     private void connectButton(ActionEvent event){
 
     }
+*/
 
     public Employee selectedEmployee;
 
@@ -286,21 +282,20 @@ public class AppController implements Initializable{
 
     @FXML
     void addEmployee(ActionEvent event) {
-        addNewEmployeeBTN.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                Parent root;
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("new-employee-tab.fxml"));
-                    root = fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setTitle("New Employee");
-                    stage.setScene(new Scene(root, 600, 400));
-                    stage.show();
-                    // Hide this current window (if this is what you want)
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+        addNewEmployeeBTN.setOnAction(event1 -> {
+            Parent root;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("new-employee-tab.fxml"));
+                root = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setTitle("New Employee");
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
+                // Hide this current window (if this is what you want)
+            }
+            catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
