@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LoginPageController">
+
+   <children>
+      <VBox alignment="CENTER" fillWidth="false" layoutX="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Admin Username" textFill="WHITE">
+               <VBox.margin>
+                  <Insets right="60.0" top="40.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="usernameTextField" promptText="Enter username here">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Password" textFill="WHITE">
+               <VBox.margin>
+                  <Insets right="100.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="passwordTextField" promptText="Enter password here">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Label fx:id="invalidLoginLabel" text="Login information is wrong!" textFill="#f76666" visible="false">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signIn" text="Sign in">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Button>
+            <Hyperlink onAction="#forgotPassword" text="Forgot Password?" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Hyperlink>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pictures/icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

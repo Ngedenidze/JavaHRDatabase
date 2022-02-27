@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProfilePageController">
+   <children>
+      <Label fx:id="labelOne" layoutX="355.0" layoutY="103.0" text="Employee Information">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField alignment="TOP_LEFT" editable="false" layoutX="377.0" layoutY="138.0" prefHeight="375.0" prefWidth="598.0" AnchorPane.rightAnchor="703.0" AnchorPane.topAnchor="138.0" />
+      <Label layoutX="700.0" layoutY="30.0" text="Profile Page">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+
+      <ImageView fitHeight="149.0" fitWidth="148.0" layoutX="55.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="491.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="1397.0" AnchorPane.topAnchor="161.0">
+         <image>
+            <Image url="@pictures/1250689.png" />
+         </image>
+
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </ImageView>
+      <HBox layoutX="777.0" layoutY="536.0" prefHeight="56.0" prefWidth="122.0" AnchorPane.bottomAnchor="208.0" AnchorPane.rightAnchor="700.6">
+         <children>
+            <Button mnemonicParsing="false" text="Delete">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="tvJobs" layoutX="949.0" layoutY="114.0" prefHeight="402.0" prefWidth="310.0">
+        <columns>
+          <TableColumn fx:id="jobIDCol" prefWidth="44.0" text="Job ID" />
+          <TableColumn fx:id="jobTitleCol" prefWidth="103.20001220703125" text="Title" />
+            <TableColumn fx:id="minSalaryCol" prefWidth="70.39990234375" text="Min Salary" />
+            <TableColumn fx:id="maxSalaryCol" prefWidth="81.5999755859375" text="Max Salary" />
+        </columns>
+      </TableView>
+      <Label layoutX="949.0" layoutY="72.0" text="Jobs">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvDepartments" layoutX="1307.0" layoutY="112.0" prefHeight="402.0" prefWidth="170.0">
+         <columns>
+            <TableColumn fx:id="depIDCol" prefWidth="49.5999755859375" text="Dep ID" />
+            <TableColumn fx:id="depNameCol" prefWidth="120.7999267578125" text="Name" />
+         </columns>
+      </TableView>
+      <Label layoutX="1312.0" layoutY="72.0" text="Departments">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="1203.0" layoutY="538.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="1421.0" layoutY="538.0" mnemonicParsing="false" text="Update" />
+      <MenuBar layoutY="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu fx:id="homePageBTN" mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Settings">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Open Settings" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Help Page" />
+               </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

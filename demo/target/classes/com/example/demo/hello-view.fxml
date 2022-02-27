@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AppController">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <TableView fx:id="tvEmployee" layoutX="496.0" layoutY="145.0" onMousePressed="#displayInformation" prefHeight="543.0" prefWidth="944.0" stylesheets="@css/style.css">
+            <columns>
+               <TableColumn fx:id="eIDCol" editable="false" maxWidth="80.0" minWidth="80.0" prefWidth="117.59994506835938" resizable="false" text="ID" />
+               <TableColumn fx:id="fnameCol" editable="false" maxWidth="89.60003662109375" minWidth="80.0" prefWidth="89.60003662109375" resizable="false" text="First Name" />
+               <TableColumn fx:id="lnameCol" maxWidth="104.0" minWidth="70.39996337890625" prefWidth="104.0" resizable="false" text="Last Name" />
+               <TableColumn fx:id="emailCol" editable="false" maxWidth="124.79998779296875" minWidth="46.4000244140625" prefWidth="124.79998779296875" resizable="false" text="Email" />
+               <TableColumn fx:id="phoneNCol" editable="false" maxWidth="109.60003662109375" minWidth="2.4000244140625" prefWidth="109.60003662109375" resizable="false" text="Phone Number" />
+               <TableColumn fx:id="jobIDCol" editable="false" maxWidth="121.59991455078125" minWidth="0.0" prefWidth="69.59991455078125" resizable="false" text="Job ID" />
+               <TableColumn fx:id="salCol" editable="false" maxWidth="171.20001220703125" minWidth="36.79998779296875" prefWidth="112.0" resizable="false" text="Salary" />
+               <TableColumn fx:id="managerIDCol" editable="false" maxWidth="254.4000244140625" minWidth="80.0" prefWidth="120.0" resizable="false" text="Manager ID" />
+               <TableColumn fx:id="depIDCol" editable="false" maxWidth="303.2000732421875" minWidth="80.0" prefWidth="116.800048828125" resizable="false" text="Department ID" />
+            </columns>
+            <tooltip>
+               <Tooltip autoHide="true" text="Employee Table" />
+            </tooltip>
+         </TableView>
+         <TextArea fx:id="informationTextArea" editable="false" layoutX="61.0" layoutY="511.0" prefHeight="175.0" prefWidth="397.0" />
+         <VBox layoutX="160.0" layoutY="174.0" prefHeight="270.0" prefWidth="298.0">
+            <TextField fx:id="IDSearchTF" prefHeight="27.0" prefWidth="187.0" promptText="ID...">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <tooltip>
+                  <Tooltip consumeAutoHidingEvents="false" text="Search By ID" />
+               </tooltip>
+            </TextField>
+            <TextField fx:id="fNameSearchTF" prefHeight="27.0" prefWidth="263.0" promptText="First Name...">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Empty Tooltip" />
+               </tooltip>
+            </TextField>
+            <TextField fx:id="lNameSearchTF" prefHeight="27.0" prefWidth="263.0" promptText="Last Name...">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Empty Tooltip" />
+               </tooltip>
+            </TextField>
+            <TextField fx:id="JobIDSearchTF" prefHeight="27.0" prefWidth="264.0" promptText="Job ID...">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Empty Tooltip" />
+               </tooltip>
+            </TextField>
+            <TextField fx:id="ManIDSearchTF" prefHeight="27.0" prefWidth="187.0" promptText="Manager ID...">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Empty Tooltip" />
+               </tooltip>
+            </TextField>
+            <TextField fx:id="DepIDSearchTF" prefHeight="27.0" prefWidth="187.0" promptText="Department ID...">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Empty Tooltip" />
+               </tooltip>
+            </TextField>
+         </VBox>
+         <Label layoutX="160.0" layoutY="126.0" text="Search By:">
+            <font>
+               <Font size="27.0" />
+            </font>
+            <tooltip>
+               <Tooltip text="Empty Tooltip" />
+            </tooltip>
+         </Label>
+         <Label layoutX="790.0" layoutY="42.0" text="Employees Table">
+            <font>
+               <Font size="48.0" />
+            </font>
+         </Label>
+         <VBox alignment="TOP_RIGHT" layoutX="29.0" layoutY="174.0" prefHeight="249.0" prefWidth="110.0">
+            <Label text="ID:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="First Name:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="22.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Last name:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Job ID:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="22.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Manager ID:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="22.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Department ID:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
+         </VBox>
+         <Button fx:id="buttonInfo" layoutX="318.0" layoutY="469.0" mnemonicParsing="false" onAction="#displayInformation" text="Display the information" />
+         <Button fx:id="goToProfileBTN" layoutX="61.0" layoutY="709.0" mnemonicParsing="false" onAction="#goToProfile" text="Go to Profile Page" />
+         <Button fx:id="addNewEmployeeBTN" layoutX="1321.0" layoutY="722.0" mnemonicParsing="false" onAction="#addEmployee" text="Add new employee" />
+      </Pane>
+   </children>
+</AnchorPane>
