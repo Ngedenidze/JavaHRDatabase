@@ -4,13 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.skin.TableHeaderRow;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,11 +21,24 @@ import java.util.logging.Logger;
 import static com.example.demo.App.setRoot;
 
 public class ProfilePageController implements Initializable {
-    @FXML
-    public Label labelOne;
 
     @FXML
-    private Menu homePageBTN;
+    private TableView<Department> tvLocations;
+
+    @FXML
+    private TableColumn<Department, Integer> locationIDCol;
+
+    @FXML
+    private TableColumn<Department, String> postalCodeCol;
+
+    @FXML
+    private TableColumn<Department, String> streetAdCol;
+
+    @FXML
+    private TableColumn<Department, String> cityCol;
+
+    @FXML
+    private TableColumn<Department, String> countryCol;
 
     @FXML
     private TableColumn<Department, Integer> depIDCol;
@@ -35,6 +46,11 @@ public class ProfilePageController implements Initializable {
     @FXML
     private TableColumn<Department, String> depNameCol;
 
+    @FXML
+    private Menu homePageBTN;
+
+    @FXML
+    private Label labelOne;
 
     @FXML
     private TableColumn<Job, Integer> jobIDCol;
@@ -49,30 +65,25 @@ public class ProfilePageController implements Initializable {
     private TableColumn<Job, Double> minSalaryCol;
 
     @FXML
-    private TableView<Department> tvDepartments;
-
-    @FXML
     private TableView<Job> tvJobs;
 
 
 
-    private String informationName;
+
 
     ObservableList<Job> jobSearchObservableList = FXCollections.observableArrayList();
     ObservableList<Department> departmentSearchObservableList = FXCollections.observableArrayList();
 
-    public void getInformationFromTextField(String name){
-        informationName = name;
-    }
+
 
     public void initialize(URL url, ResourceBundle resource){
         EmployeeDBC connectNow = new EmployeeDBC();
         Connection connectDBS = connectNow.getConnection();
-        String connectionQueryJob = "SELECT * FROM jobs";
-        String connectionQueryDepartment = "SELECT department_id,department_name FROM departments";
-
 
         try {
+
+            String connectionQueryDepartment = "SELECT department_id,department_name,departments.location_id,country_id,city,street_address, postal_code\n" +
+                    " from departments INNER JOIN locations on departments.location_id = locations.location_id ORDER BY department_id Asc;";
             //Running this statement
             Statement statement = connectDBS.createStatement();
             ResultSet queryResult = statement.executeQuery(connectionQueryDepartment);
@@ -81,22 +92,42 @@ public class ProfilePageController implements Initializable {
             while (queryResult.next()) {
                 int queryDepId = queryResult.getInt("department_id");
                 String queryDepName = queryResult.getString("department_name");
+                int queryLocationID = queryResult.getInt("location_id");
+                String queryCountryID = queryResult.getString("country_id");
+                String queryCityID = queryResult.getString("city");
+                String queryStrAdId = queryResult.getString("street_address");
+                String queryPostalCode = queryResult.getString("postal_code");
+
+
                 //Populate Employee Observable List
-                departmentSearchObservableList.add(new Department(queryDepId,queryDepName));
+                departmentSearchObservableList.add(new Department(queryDepId,queryDepName,queryLocationID,queryCountryID,queryCityID,queryStrAdId
+                        ,queryPostalCode));
 
             }
 
 
             depIDCol.setCellValueFactory(new PropertyValueFactory<>("department_id"));
             depNameCol.setCellValueFactory(new PropertyValueFactory<>("department_name"));
-            tvDepartments.setItems(departmentSearchObservableList);
+            locationIDCol.setCellValueFactory(new PropertyValueFactory<>("location_id"));
+            countryCol.setCellValueFactory(new PropertyValueFactory<>("country_id"));
+            cityCol.setCellValueFactory(new PropertyValueFactory<>("city"));
+            streetAdCol.setCellValueFactory(new PropertyValueFactory<>("street_address"));
+            postalCodeCol.setCellValueFactory(new PropertyValueFactory<>("postal_code"));
+            tvLocations.setItems(departmentSearchObservableList);
+
 
             }   catch (SQLException e){
         //Log for the error
         Logger.getLogger(AppController.class.getName()).log(Level.SEVERE,null, e);
         }
+        tvLocations.skinProperty().addListener(((obs, oldSkin, newSkin) -> {
+            final TableHeaderRow header = (TableHeaderRow) tvJobs.lookup("TableHeaderRow");
+            header.reorderingProperty().addListener((o, oldVal, newVal) -> header.setReordering(false));
+        }
+        ));
 
         try {
+            String connectionQueryJob = "SELECT * FROM jobs";
             //Running this statement
             Statement statement = connectDBS.createStatement();
             ResultSet queryResult = statement.executeQuery(connectionQueryJob);
@@ -125,6 +156,11 @@ public class ProfilePageController implements Initializable {
             //Log for the error
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE,null, e);
         }
+        tvJobs.skinProperty().addListener(((obs, oldSkin, newSkin) -> {
+            final TableHeaderRow header = (TableHeaderRow) tvJobs.lookup("TableHeaderRow");
+            header.reorderingProperty().addListener((o, oldVal, newVal) -> header.setReordering(false));
+        }
+        ));
 
 
 
@@ -132,7 +168,7 @@ public class ProfilePageController implements Initializable {
 
     @FXML
     private void GoToHomePage(ActionEvent event)throws Exception{
-        setRoot("hello-view");
+        App.setRoot("hello-view");
     }
 
 }

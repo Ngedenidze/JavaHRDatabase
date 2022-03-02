@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -16,87 +18,94 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProfilePageController">
-   <children>
-      <Label fx:id="labelOne" layoutX="355.0" layoutY="103.0" text="Employee Information">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <TextField alignment="TOP_LEFT" editable="false" layoutX="377.0" layoutY="138.0" prefHeight="375.0" prefWidth="598.0" AnchorPane.rightAnchor="703.0" AnchorPane.topAnchor="138.0" />
-      <Label layoutX="700.0" layoutY="30.0" text="Profile Page">
-         <font>
-            <Font size="38.0" />
-         </font>
-      </Label>
+<AnchorPane style="-fx-background-color: #f3f3f3;" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProfilePageController">
+    <Label fx:id="labelOne" layoutX="278.0" layoutY="111.0" text="Employee Information">
+        <font>
+          <Font size="15.0"/>
+        </font>
+    </Label>
+    <TextField alignment="TOP_LEFT" editable="false" layoutX="278.0" layoutY="151.0" prefHeight="217.0"
+               prefWidth="498.0" AnchorPane.rightAnchor="823.6" AnchorPane.topAnchor="151.0"/>
+    <Label layoutX="700.0" layoutY="30.0" text="Profile Page">
+        <font>
+          <Font size="38.0"/>
+        </font>
+    </Label>
 
-      <ImageView fitHeight="149.0" fitWidth="148.0" layoutX="55.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="491.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="1397.0" AnchorPane.topAnchor="161.0">
-         <image>
-            <Image url="@pictures/1250689.png" />
-         </image>
+    <ImageView fitHeight="149.0" fitWidth="148.0" layoutX="55.0" layoutY="161.0" pickOnBounds="true"
+               preserveRatio="true" AnchorPane.bottomAnchor="491.0" AnchorPane.leftAnchor="55.0"
+               AnchorPane.rightAnchor="1397.0" AnchorPane.topAnchor="161.0">
 
-         <effect>
-            <ColorAdjust />
-         </effect>
-      </ImageView>
-      <HBox layoutX="777.0" layoutY="536.0" prefHeight="56.0" prefWidth="122.0" AnchorPane.bottomAnchor="208.0" AnchorPane.rightAnchor="700.6">
-         <children>
-            <Button mnemonicParsing="false" text="Delete">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <TableView fx:id="tvJobs" layoutX="949.0" layoutY="114.0" prefHeight="402.0" prefWidth="310.0">
-        <columns>
-          <TableColumn fx:id="jobIDCol" prefWidth="44.0" text="Job ID" />
-          <TableColumn fx:id="jobTitleCol" prefWidth="103.20001220703125" text="Title" />
-            <TableColumn fx:id="minSalaryCol" prefWidth="70.39990234375" text="Min Salary" />
-            <TableColumn fx:id="maxSalaryCol" prefWidth="81.5999755859375" text="Max Salary" />
-        </columns>
-      </TableView>
-      <Label layoutX="949.0" layoutY="72.0" text="Jobs">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tvDepartments" layoutX="1307.0" layoutY="112.0" prefHeight="402.0" prefWidth="170.0">
-         <columns>
-            <TableColumn fx:id="depIDCol" prefWidth="49.5999755859375" text="Dep ID" />
-            <TableColumn fx:id="depNameCol" prefWidth="120.7999267578125" text="Name" />
-         </columns>
-      </TableView>
-      <Label layoutX="1312.0" layoutY="72.0" text="Departments">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <Button layoutX="1203.0" layoutY="538.0" mnemonicParsing="false" text="Update" />
-      <Button layoutX="1421.0" layoutY="538.0" mnemonicParsing="false" text="Update" />
-      <MenuBar layoutY="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <menus>
-          <Menu fx:id="homePageBTN" mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page" />
-               </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Settings">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Open Settings" />
-               </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Help Page" />
-               </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </children>
+        <effect>
+            <ColorAdjust/>
+        </effect>
+        <Image url="@../../../../../../../../../../../../../IdeaProjects/demo/src/main/resources/com/example/demo/pictures/1250689.png"/>
+    </ImageView>
+    <HBox layoutX="653.0" layoutY="400.0" prefHeight="56.0" prefWidth="122.0" AnchorPane.bottomAnchor="344.0"
+          AnchorPane.rightAnchor="824.6">
+        <Button mnemonicParsing="false" text="Delete">
+            <HBox.margin>
+                <Insets right="20.0"/>
+            </HBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit">
+            <HBox.margin>
+                <Insets/>
+            </HBox.margin>
+        </Button>
+    </HBox>
+    <Label layoutX="896.0" layoutY="97.0" text="Reference tables">
+        <font>
+          <Font size="19.0"/>
+        </font>
+    </Label>
+    <MenuBar layoutY="4.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+             AnchorPane.topAnchor="0.0">
+        <Menu fx:id="homePageBTN" mnemonicParsing="false" onAction="#GoToHomePage" style="-fx-font-color: red;"
+              text="Home Page">
+            <MenuItem mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Settings">
+            <MenuItem mnemonicParsing="false" text="Open Settings"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" text="Help Page"/>
+        </Menu>
+    </MenuBar>
+    <TabPane layoutX="824.0" layoutY="133.0" prefHeight="446.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Jobs">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="tvJobs" prefHeight="442.0" prefWidth="670.0"
+                           AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="jobIDCol" prefWidth="135.2000732421875" text="Job ID"/>
+                        <TableColumn fx:id="jobTitleCol" prefWidth="163.19989013671875" text="Title"/>
+                        <TableColumn fx:id="minSalaryCol" prefWidth="185.60009765625" text="Min Salary"/>
+                        <TableColumn fx:id="maxSalaryCol" prefWidth="185.5999755859375" text="Max Salary"/>
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+        <Tab text="Locations">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="tvLocations" layoutX="-50.0" prefHeight="358.0" prefWidth="678.0"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="depIDCol" prefWidth="97.60003662109375" text="Department ID"/>
+                        <TableColumn fx:id="depNameCol" prefWidth="127.199951171875"
+                                     text="Department name"/>
+                        <TableColumn fx:id="locationIDCol" prefWidth="84.0" text="Location Id"/>
+                        <TableColumn fx:id="countryCol" prefWidth="77.5999755859375" text="Country "/>
+                        <TableColumn fx:id="cityCol" prefWidth="76.800048828125" text="City"/>
+                        <TableColumn fx:id="streetAdCol" prefWidth="101.5999755859375"
+                                     text="Street address"/>
+                        <TableColumn fx:id="postalCodeCol" prefWidth="91.199951171875" text="Postal code"/>
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
 </AnchorPane>
