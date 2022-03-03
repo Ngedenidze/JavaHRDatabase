@@ -17,8 +17,7 @@ public class Employee {
                "Name: " + first_name + " " + last_name +"\n\nContact Information\nPhone: " + phone_number +
                 ", Email: " + email +
                 "\n\nJob Description\nEmployee Job Id: " + job_id +
-                "\nEmployee Salary: " + salary + "\nDepartment ID: " + department_id
-                +"\nJob ID: " + job_id;
+                "\nEmployee Salary: " + salary + "\nDepartment ID: " + department_id;
     }
 
     private Integer department_id;

@@ -23,11 +23,58 @@ import static com.example.demo.App.setRoot;
 public class ProfilePageController implements Initializable {
 
     @FXML
-    private TableView<Department> tvLocations;
-
+    private TextField DepartmentIDTF;
 
     @FXML
-    private TextArea informationTF;
+    private TextField EmailTF;
+
+    @FXML
+    private TextField EmployeeIDTF;
+
+    @FXML
+    private TextField EmployeeNameTF;
+
+    @FXML
+    private TextField JobIDTF;
+
+    @FXML
+    private TextField LastNameTF;
+
+    @FXML
+    private TextField PhoneNumberTF;
+
+    @FXML
+    private Button deleteEmployee;
+
+    @FXML
+    private Button editDepID;
+
+    @FXML
+    private Button editEmail;
+
+    @FXML
+    private Button editEmpID;
+
+    @FXML
+    private Button editEmpLastName;
+
+    @FXML
+    private Button editEmpName;
+
+    @FXML
+    private Button editJobID;
+
+    @FXML
+    private Button editPhoneNumber;
+
+    @FXML
+    private Menu homePageBTN;
+
+    @FXML
+    private Button uploadPicture;
+
+    @FXML
+    private TableView<Department> tvLocations;
 
     @FXML
     private TableColumn<Department, Integer> locationIDCol;
@@ -49,9 +96,6 @@ public class ProfilePageController implements Initializable {
 
     @FXML
     private TableColumn<Department, String> depNameCol;
-
-    @FXML
-    private Menu homePageBTN;
 
     @FXML
     private Label labelOne;
@@ -81,7 +125,10 @@ public class ProfilePageController implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle resource){
-        informationTF.setText(AppController.displayInformation());
+
+
+
+
 
 
         EmployeeDBC connectNow = new EmployeeDBC();
