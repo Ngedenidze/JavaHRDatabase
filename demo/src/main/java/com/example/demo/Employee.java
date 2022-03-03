@@ -10,13 +10,15 @@ public class Employee {
     private double salary;
     private Integer manager_id;
 
+
     @Override
     public String toString() {
         return  "Employee:\n" +
                "Name: " + first_name + " " + last_name +"\n\nContact Information\nPhone: " + phone_number +
                 ", Email: " + email +
                 "\n\nJob Description\nEmployee Job Id: " + job_id +
-                "\nEmployee Salary:" + salary ;
+                "\nEmployee Salary: " + salary + "\nDepartment ID: " + department_id
+                +"\nJob ID: " + job_id;
     }
 
     private Integer department_id;

@@ -25,6 +25,10 @@ public class ProfilePageController implements Initializable {
     @FXML
     private TableView<Department> tvLocations;
 
+
+    @FXML
+    private TextArea informationTF;
+
     @FXML
     private TableColumn<Department, Integer> locationIDCol;
 
@@ -77,12 +81,16 @@ public class ProfilePageController implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle resource){
+        informationTF.setText(AppController.displayInformation());
+
+
         EmployeeDBC connectNow = new EmployeeDBC();
         Connection connectDBS = connectNow.getConnection();
 
         try {
 
-            String connectionQueryDepartment = "SELECT department_id,department_name,departments.location_id,country_id,city,street_address, postal_code\n" +
+            String connectionQueryDepartment = "SELECT department_id,department_name,departments.location_id," +
+                    "country_id,city,street_address, postal_code\n" +
                     " from departments INNER JOIN locations on departments.location_id = locations.location_id ORDER BY department_id Asc;";
             //Running this statement
             Statement statement = connectDBS.createStatement();
@@ -120,11 +128,6 @@ public class ProfilePageController implements Initializable {
         //Log for the error
         Logger.getLogger(AppController.class.getName()).log(Level.SEVERE,null, e);
         }
-        tvLocations.skinProperty().addListener(((obs, oldSkin, newSkin) -> {
-            final TableHeaderRow header = (TableHeaderRow) tvJobs.lookup("TableHeaderRow");
-            header.reorderingProperty().addListener((o, oldVal, newVal) -> header.setReordering(false));
-        }
-        ));
 
         try {
             String connectionQueryJob = "SELECT * FROM jobs";

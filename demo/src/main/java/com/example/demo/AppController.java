@@ -29,6 +29,7 @@ import java.sql.Statement;
 import javafx.fxml.Initializable;
 import javafx.scene.control.skin.TableHeaderRow;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ResourceBundle;
@@ -90,7 +91,7 @@ public class AppController implements Initializable{
 
     //Text areas
     @FXML
-    private TextArea informationTextArea;
+    public TextArea informationTextArea;
 
 
 
@@ -259,12 +260,23 @@ public class AppController implements Initializable{
     }
 */
 
-    public Employee selectedEmployee;
+    public static Employee selectedEmployee;
 
     @FXML
     public void goToProfile(ActionEvent event) {
         try{
-        App.setRoot("profile-page");}
+         if(selectedEmployee == null){
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.initModality(Modality.APPLICATION_MODAL);
+             alert.setTitle("No Employee is selected!");
+             alert.setHeaderText("Select the employee!");
+             alert.setContentText("To view the profile page of the employee, you have to select them from the table!");
+
+             alert.showAndWait();
+         }else {
+             App.setRoot("profile-page");
+         }
+        }
         catch (IOException e){
             e.printStackTrace();
         }
@@ -298,6 +310,9 @@ public class AppController implements Initializable{
                 e.printStackTrace();
             }
         });
+    }
+    public static String displayInformation(){
+        return selectedEmployee.toString();
     }
 
 
