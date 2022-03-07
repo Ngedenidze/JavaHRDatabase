@@ -6,6 +6,7 @@ public class Department {
     private int location_id;
     private String country_id;
 
+    //Constructor with every attributes
     public Department(int department_id, String department_name, int location_id, String country_id, String city, String street_address, String postal_code) {
         this.department_id = department_id;
         this.department_name = department_name;
@@ -16,6 +17,7 @@ public class Department {
         this.postal_code = postal_code;
     }
 
+    //getters and setters
     public int getLocation_id() {
         return location_id;
     }
@@ -60,12 +62,13 @@ public class Department {
     private String street_address;
     private String postal_code;
 
+    //constructor with only department id and name
     public Department(int department_id, String department_name) {
         this.department_id = department_id;
         this.department_name = department_name;
     }
 
-
+    //getter and setters
     public int getDepartment_id() {
         return department_id;
     }

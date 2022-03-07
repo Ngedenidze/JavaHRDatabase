@@ -48,6 +48,10 @@ public class AppController implements Initializable{
     private Button goToProfileBTN;
     @FXML
     private Button addNewEmployeeBTN;
+    @FXML
+    private MenuItem homePageBTN;
+    @FXML
+    private MenuItem signOutBTN;
     //Labels
 
     //Tableviews
@@ -171,7 +175,7 @@ public class AppController implements Initializable{
             String searchKeyword = newValue.toLowerCase();
 
             //filtering out by each element of Employee class
-            return Employee.getEmployee_id().toString().contains(searchKeyword); //Found a match is first name
+            return Employee.getEmployee_id().toString().contains(searchKeyword); //Found a match is ID
 
         }));
 
@@ -195,7 +199,7 @@ public class AppController implements Initializable{
             String searchKeyword = newValue.toLowerCase();
 
             //filtering out by each element of Employee class
-            return Employee.getLast_name().toLowerCase().contains(searchKeyword); //Found a match is first name
+            return Employee.getLast_name().toLowerCase().contains(searchKeyword); //Found a match is last name
 
         }));
 
@@ -207,7 +211,7 @@ public class AppController implements Initializable{
             String searchKeyword = newValue.toLowerCase();
 
             //filtering out by each element of Employee class
-            return Employee.getJob_id().toString().contains(searchKeyword); //Found a match is first name
+            return Employee.getJob_id().toString().contains(searchKeyword); //Found a match is Job ID
 
         }));
 
@@ -219,7 +223,7 @@ public class AppController implements Initializable{
             String searchKeyword = newValue.toLowerCase();
 
             //filtering out by each element of Employee class
-            return Employee.getManager_id().toString().contains(searchKeyword); //Found a match is first name
+            return Employee.getManager_id().toString().contains(searchKeyword); //Found a match is Manager ID
 
         }));
 
@@ -231,7 +235,7 @@ public class AppController implements Initializable{
             String searchKeyword = newValue.toLowerCase();
 
             //filtering out by each element of Employee class
-            return Employee.getDepartment_id().toString().contains(searchKeyword); //Found a match is first name
+            return Employee.getDepartment_id().toString().contains(searchKeyword); //Found a match is Department ID
 
         }));
 
@@ -243,6 +247,22 @@ public class AppController implements Initializable{
 
         //Applying filter
         tvEmployee.setItems(sortedData);
+        homePageBTN.setOnAction(event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("Home Page");
+            alert.setHeaderText("You are already on the home page");
+            alert.showAndWait();
+        });
+        signOutBTN.setOnAction(event -> {
+            try {
+                App.setRoot("login-page");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
     }
 
     /**
@@ -253,18 +273,17 @@ public class AppController implements Initializable{
 
     }
 
-/*
-    @FXML
-    private void connectButton(ActionEvent event){
-
-    }
-*/
-
+    //Selected Employee from the table
     public static Employee selectedEmployee;
 
+
+    /*
+        Method to load the profile page with selected Employee Information
+     */
     @FXML
     public void goToProfile(ActionEvent event) {
         try{
+            //if Employee is not selected in the table throw an error
          if(selectedEmployee == null){
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
              alert.initModality(Modality.APPLICATION_MODAL);
@@ -284,7 +303,7 @@ public class AppController implements Initializable{
 
 
     /**
-     * Display the employee information inside the information text are on mouse button click
+     * Display the selected employee information inside the information text are on mouse button click
      */
     @FXML
     private void displayInformation(MouseEvent event){
@@ -295,7 +314,7 @@ public class AppController implements Initializable{
     @FXML
     void addEmployee(ActionEvent event) {
 
-        addNewEmployeeBTN.setOnAction(event1 -> {
+
             Parent root;
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("new-employee-tab.fxml"));
@@ -309,10 +328,10 @@ public class AppController implements Initializable{
             catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+
     }
-    public static String displayInformation(){
-        return selectedEmployee.toString();
+    public static Employee displayInformation(){
+        return selectedEmployee;
     }
 
 

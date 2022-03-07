@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -78,7 +78,6 @@
                     <effect>
                   <ColorAdjust />
               </effect>
-              <Image url="@pictures/100.jpg" />
           </ImageView>
       </children>
    </VBox>
@@ -163,19 +162,18 @@
          </Label>
       </children>
    </VBox>
-   <TextField fx:id="EmployeeNameTF" editable="false" layoutX="537.0" layoutY="206.0" prefHeight="26.0" prefWidth="137.0" />
-   <TextField fx:id="LastNameTF" editable="false" layoutX="537.0" layoutY="252.0" prefHeight="26.0" prefWidth="137.0" />
-   <TextField fx:id="EmployeeIDTF" editable="false" layoutX="537.0" layoutY="298.0" prefHeight="26.0" prefWidth="137.0" />
-   <Button fx:id="editEmpName" layoutX="691.0" layoutY="206.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-   <Button fx:id="editEmpID" layoutX="691.0" layoutY="295.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-   <TextField fx:id="PhoneNumberTF" editable="false" layoutX="537.0" layoutY="397.0" prefHeight="26.0" prefWidth="137.0" />
-   <TextField fx:id="EmailTF" editable="false" layoutX="537.0" layoutY="441.0" prefHeight="26.0" prefWidth="137.0" />
-   <TextField fx:id="DepartmentIDTF" editable="false" layoutX="537.0" layoutY="536.0" prefHeight="26.0" prefWidth="137.0" />
-   <TextField fx:id="JobIDTF" editable="false" layoutX="537.0" layoutY="585.0" prefHeight="26.0" prefWidth="138.0" />
-   <Button fx:id="editPhoneNumber" layoutX="691.0" layoutY="396.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-   <Button fx:id="editEmail" layoutX="691.0" layoutY="441.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-   <Button fx:id="editDepID" layoutX="691.0" layoutY="536.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-   <Button fx:id="editJobID" layoutX="691.0" layoutY="585.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-   <Button fx:id="editEmpLastName" layoutX="691.0" layoutY="252.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
-   <Button fx:id="deleteEmployee" layoutX="635.0" layoutY="658.0" mnemonicParsing="false" text="Delete Employee" />
+   <TextField fx:id="EmployeeNameTF" editable="false" layoutX="537.0" layoutY="206.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="LastNameTF" editable="false" layoutX="537.0" layoutY="252.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="EmployeeIDTF" editable="false" layoutX="537.0" layoutY="298.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editEmpName" layoutX="715.0" layoutY="203.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
+   <TextField fx:id="PhoneNumberTF" editable="false" layoutX="537.0" layoutY="397.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="EmailTF" editable="false" layoutX="537.0" layoutY="441.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editPhoneNumber" layoutX="715.0" layoutY="393.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
+   <Button fx:id="editEmail" layoutX="715.0" layoutY="441.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
+   <Button fx:id="editEmpLastName" layoutX="715.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
+   <Button fx:id="deleteEmployee" layoutX="683.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteEmployee" text="Delete Employee" />
+   <ChoiceBox fx:id="choiceBoxDepID" layoutX="537.0" layoutY="536.0" onMouseClicked="#onActionDepartmentID" prefHeight="26.0" prefWidth="162.0" />
+   <ChoiceBox fx:id="choiceBoxJobID" layoutX="537.0" layoutY="578.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editDepID" layoutX="715.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
+   <Button fx:id="editEmpName2" layoutX="715.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
 </AnchorPane>

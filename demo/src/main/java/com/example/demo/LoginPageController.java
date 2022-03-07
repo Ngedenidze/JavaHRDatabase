@@ -44,24 +44,24 @@ public class LoginPageController implements Initializable {
 
         LoginDBC connectNow = new LoginDBC();
         Connection connectDBS = connectNow.getConnection();
-        String verifyLoginQuery = "select count(1) from users where username='"
-                + usernameTextField.getText()+"' and password = SHA2(CONCAT('"+
-            passwordTextField.getText() +"','241'),256)";
+
         try {
+            String verifyLoginQuery = "select count(1) from users where username='"
+                    + usernameTextField.getText()+"' and password = SHA2(CONCAT('"+
+                    passwordTextField.getText() +"','241'),256)";
             Statement statement = connectDBS.createStatement();
             ResultSet resultSet = statement.executeQuery(verifyLoginQuery);
 
             while (resultSet.next()){
                 if (resultSet.getInt(1) == 1){
                     App.setRoot("hello-view");
-                }else {
-                    invalidLoginLabel.setVisible(true);
                 }
             }
 
         //
 
         }   catch (Exception e){
+            invalidLoginLabel.setVisible(true);
             e.printStackTrace();
             e.getCause();
         }

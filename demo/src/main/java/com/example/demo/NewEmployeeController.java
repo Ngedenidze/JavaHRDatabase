@@ -89,6 +89,7 @@ public class NewEmployeeController {
             ResultSet queryResult = statement.executeQuery(idQuery);
             while (queryResult.next()){
             employeeID.setText(String.valueOf(queryResult.getInt("employee_id")));
+            employeeID.setVisible(true);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

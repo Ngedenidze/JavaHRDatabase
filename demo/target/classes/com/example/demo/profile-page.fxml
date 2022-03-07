@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -10,39 +11,20 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1600.0" style="-fx-background-color: #f3f3f3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProfilePageController">
-    <Label fx:id="labelOne" layoutX="296.0" layoutY="114.0" text="Employee Information">
-        <font>
-          <Font size="15.0" />
-        </font>
-    </Label>
     <Label layoutX="700.0" layoutY="30.0" text="Profile Page">
         <font>
           <Font size="38.0" />
         </font>
     </Label>
-    <HBox layoutX="677.0" layoutY="523.0" prefHeight="56.0" prefWidth="122.0" AnchorPane.bottomAnchor="221.0" AnchorPane.rightAnchor="800.6">
-        <Button mnemonicParsing="false" text="Delete">
-            <HBox.margin>
-                <Insets right="20.0" />
-            </HBox.margin>
-        </Button>
-        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit">
-            <HBox.margin>
-                <Insets />
-            </HBox.margin>
-        </Button>
-    </HBox>
-    <Label layoutX="1123.0" layoutY="85.0" text="Reference tables">
+    <Label layoutX="1123.0" layoutY="95.0" text="Reference tables">
         <font>
           <Font size="19.0" />
         </font>
@@ -58,15 +40,15 @@
             <MenuItem mnemonicParsing="false" text="Help Page" />
         </Menu>
     </MenuBar>
-    <TabPane layoutX="857.0" layoutY="136.0" prefHeight="446.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane layoutX="841.0" layoutY="156.0" prefHeight="530.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
         <Tab text="Jobs">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                <TableView fx:id="tvJobs" prefHeight="442.0" prefWidth="670.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TableView fx:id="tvJobs" prefHeight="474.0" prefWidth="670.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="jobIDCol" prefWidth="135.2000732421875" text="Job ID" />
-                        <TableColumn fx:id="jobTitleCol" prefWidth="163.19989013671875" text="Title" />
-                        <TableColumn fx:id="minSalaryCol" prefWidth="185.60009765625" text="Min Salary" />
-                        <TableColumn fx:id="maxSalaryCol" prefWidth="172.800048828125" text="Max Salary" />
+                        <TableColumn fx:id="jobIDCol" editable="false" prefWidth="135.2000732421875" text="Job ID" />
+                        <TableColumn fx:id="jobTitleCol" editable="false" prefWidth="163.19989013671875" text="Title" />
+                        <TableColumn fx:id="minSalaryCol" editable="false" prefWidth="185.60009765625" text="Min Salary" />
+                        <TableColumn fx:id="maxSalaryCol" editable="false" prefWidth="168.0" text="Max Salary" />
                     </columns>
                 </TableView>
             </AnchorPane>
@@ -75,34 +57,124 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <TableView fx:id="tvLocations" layoutX="-50.0" prefHeight="358.0" prefWidth="678.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="depIDCol" prefWidth="97.60003662109375" text="Department ID" />
-                        <TableColumn fx:id="depNameCol" prefWidth="127.199951171875" text="Department name" />
-                        <TableColumn fx:id="locationIDCol" prefWidth="84.0" text="Location Id" />
-                        <TableColumn fx:id="countryCol" prefWidth="77.5999755859375" text="Country " />
-                        <TableColumn fx:id="cityCol" prefWidth="76.800048828125" text="City" />
-                        <TableColumn fx:id="streetAdCol" prefWidth="101.5999755859375" text="Street address" />
-                        <TableColumn fx:id="postalCodeCol" prefWidth="91.199951171875" text="Postal code" />
+                        <TableColumn fx:id="depIDCol" editable="false" prefWidth="97.60003662109375" text="Department ID" />
+                        <TableColumn fx:id="depNameCol" editable="false" prefWidth="127.199951171875" text="Department name" />
+                        <TableColumn fx:id="locationIDCol" editable="false" prefWidth="84.0" text="Location Id" />
+                        <TableColumn fx:id="countryCol" editable="false" prefWidth="77.5999755859375" text="Country " />
+                        <TableColumn fx:id="cityCol" editable="false" prefWidth="76.800048828125" text="City" />
+                        <TableColumn fx:id="streetAdCol" editable="false" prefWidth="101.5999755859375" text="Street address" />
+                        <TableColumn fx:id="postalCodeCol" editable="false" prefWidth="91.199951171875" text="Postal code" />
                     </columns>
                 </TableView>
             </AnchorPane>
         </Tab>
     </TabPane>
-   <TextArea fx:id="informationTF" editable="false" layoutX="296.0" layoutY="161.0" prefHeight="342.0" prefWidth="502.0" wrapText="true">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </TextArea>
-   <Button layoutX="205.0" layoutY="400.0" mnemonicParsing="false" text="Button" />
-   <VBox layoutX="71.0" layoutY="161.0" prefHeight="134.0" prefWidth="138.0">
+   <Button fx:id="uploadPicture" layoutX="163.0" layoutY="441.0" mnemonicParsing="false" text="Upload Picture" />
+   <VBox layoutX="64.0" layoutY="201.0" prefHeight="220.0" prefWidth="220.0">
       <children>
       
-                <ImageView fitHeight="191.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="167.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
       
                     <effect>
                   <ColorAdjust />
               </effect>
-              <Image url="@pictures/100.jpg" />
           </ImageView>
       </children>
    </VBox>
+   <VBox alignment="TOP_RIGHT" layoutX="318.0" layoutY="154.0" prefHeight="385.0" prefWidth="201.0">
+      <children>
+          <Label fx:id="labelOne" text="Employee Information">
+              <font>
+                <Font size="20.0" />
+              </font>
+          </Label>
+         <Label text="Employee Name:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="22.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Last Name:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="22.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Employee ID:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="25.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Contact Information">
+            <font>
+               <Font size="20.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="25.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Phone Number:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="22.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Email:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="22.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Job Description">
+            <font>
+               <Font size="20.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="25.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Department ID:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="22.0" />
+            </VBox.margin>
+         </Label>
+         <Label text="Job ID:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="22.0" />
+            </VBox.margin>
+         </Label>
+      </children>
+   </VBox>
+   <TextField fx:id="EmployeeNameTF" editable="false" layoutX="537.0" layoutY="206.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="LastNameTF" editable="false" layoutX="537.0" layoutY="252.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="EmployeeIDTF" editable="false" layoutX="537.0" layoutY="298.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editEmpName" layoutX="715.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
+   <Button fx:id="editEmpID" layoutX="715.0" layoutY="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
+   <TextField fx:id="PhoneNumberTF" editable="false" layoutX="537.0" layoutY="397.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="EmailTF" editable="false" layoutX="537.0" layoutY="441.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editPhoneNumber" layoutX="715.0" layoutY="393.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
+   <Button fx:id="editEmail" layoutX="715.0" layoutY="441.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
+   <Button fx:id="editEmpLastName" layoutX="715.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Edit" />
+   <Button fx:id="deleteEmployee" layoutX="659.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteEmployee" text="Delete Employee" />
+   <ChoiceBox fx:id="choiseBoxDepID" layoutX="537.0" layoutY="536.0" onMouseClicked="#onActionDepartmentID" prefHeight="26.0" prefWidth="138.0" />
+   <ChoiceBox fx:id="choiseBoxJobID" layoutX="537.0" layoutY="578.0" prefHeight="26.0" prefWidth="138.0" />
+   <Button fx:id="editDepID" layoutX="691.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
+   <Button fx:id="editEmpName2" layoutX="691.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
 </AnchorPane>

@@ -8,7 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.TableHeaderRow;
+import javafx.stage.Modality;
+import org.w3c.dom.events.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -115,21 +118,42 @@ public class ProfilePageController implements Initializable {
     @FXML
     private TableView<Job> tvJobs;
 
+    @FXML
+    private ChoiceBox<Integer> choiceBoxDepID;
+
+    @FXML
+    private ChoiceBox<Integer> choiceBoxJobID;
 
 
 
 
     ObservableList<Job> jobSearchObservableList = FXCollections.observableArrayList();
     ObservableList<Department> departmentSearchObservableList = FXCollections.observableArrayList();
+    ObservableList<Integer> departmentIDObservableList = FXCollections.observableArrayList();
+    ObservableList<Integer> jobIDObservableList = FXCollections.observableArrayList();
 
-
+    @FXML
+    void onActionDepartmentID(ActionEvent event) {
+        editDepID.setVisible(true);
+    }
 
     public void initialize(URL url, ResourceBundle resource){
+        /*
+            Update Text fields after choosing the Employee
+         */
+
+        Employee selectedEmployee =  AppController.displayInformation();
 
 
+        EmployeeNameTF.setText(selectedEmployee.getFirst_name());
+        LastNameTF.setText(selectedEmployee.getLast_name());
+        EmployeeIDTF.setText(selectedEmployee.getEmployee_id().toString());
+        PhoneNumberTF.setText(selectedEmployee.getPhone_number());
+        EmailTF.setText(selectedEmployee.getEmail());
 
 
-
+        choiceBoxDepID.setValue(selectedEmployee.getDepartment_id());
+        choiceBoxJobID.setValue(selectedEmployee.getJob_id());
 
         EmployeeDBC connectNow = new EmployeeDBC();
         Connection connectDBS = connectNow.getConnection();
@@ -139,6 +163,7 @@ public class ProfilePageController implements Initializable {
             String connectionQueryDepartment = "SELECT department_id,department_name,departments.location_id," +
                     "country_id,city,street_address, postal_code\n" +
                     " from departments INNER JOIN locations on departments.location_id = locations.location_id ORDER BY department_id Asc;";
+            String distinctDepartmentID = "Select distinct department_id from departments order by department_id asc";
             //Running this statement
             Statement statement = connectDBS.createStatement();
             ResultSet queryResult = statement.executeQuery(connectionQueryDepartment);
@@ -158,8 +183,16 @@ public class ProfilePageController implements Initializable {
                 departmentSearchObservableList.add(new Department(queryDepId,queryDepName,queryLocationID,queryCountryID,queryCityID,queryStrAdId
                         ,queryPostalCode));
 
+
+
+            }
+            queryResult = statement.executeQuery(distinctDepartmentID);
+            while (queryResult.next()) {
+                int queryDepId = queryResult.getInt("department_id");
+                departmentIDObservableList.add(queryDepId);
             }
 
+            choiceBoxDepID.setItems(departmentIDObservableList);
 
             depIDCol.setCellValueFactory(new PropertyValueFactory<>("department_id"));
             depNameCol.setCellValueFactory(new PropertyValueFactory<>("department_name"));
@@ -178,6 +211,7 @@ public class ProfilePageController implements Initializable {
 
         try {
             String connectionQueryJob = "SELECT * FROM jobs";
+            String distinctJobID = "Select distinct job_id from jobs order by job_id asc";
             //Running this statement
             Statement statement = connectDBS.createStatement();
             ResultSet queryResult = statement.executeQuery(connectionQueryJob);
@@ -193,6 +227,16 @@ public class ProfilePageController implements Initializable {
                 jobSearchObservableList.add(new Job(queryJobId,queryJobTitle,queryMinSalary,queryMaxSalary));
 
             }
+            queryResult = statement.executeQuery(distinctJobID);
+
+            //While query has next result, populate the Observable list
+            while (queryResult.next()) {
+                int queryJobId = queryResult.getInt("job_id");
+                jobIDObservableList.add(queryJobId);
+            }
+            choiceBoxJobID.setItems(jobIDObservableList);
+
+
 
 
             jobIDCol.setCellValueFactory(new PropertyValueFactory<>("job_id"));
@@ -212,6 +256,170 @@ public class ProfilePageController implements Initializable {
         }
         ));
 
+        /*
+            Edit  Buttons
+         */
+            editEmpName.setOnAction(event -> {
+                if (editEmpName.getText().contains("Edit")) {
+                    EmployeeNameTF.setEditable(true);
+                    editEmpName.setText("Confirm");
+                } else{
+                    try {
+                        String updateStatement = "UPDATE employees " +
+                                                 "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                                                 "WHERE employee_id="+ EmployeeIDTF.getText();
+                        Statement statement = connectDBS.createStatement();
+                        statement.executeUpdate(updateStatement);
+                        EmployeeNameTF.setEditable(false);
+                        editEmpName.setText("Edit");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.initModality(Modality.APPLICATION_MODAL);
+                        alert.setTitle("Employee Update");
+                        alert.setHeaderText("Employee information updated!");
+                        alert.showAndWait();
+
+                    }  catch (Exception io){
+                        io.printStackTrace();
+                    }
+
+                }
+
+            });
+
+        editEmpName.setOnAction(event -> {
+            if (editEmpName.getText().contains("Edit")) {
+                EmployeeNameTF.setEditable(true);
+                editEmpName.setText("Confirm");
+            } else{
+                try {
+                    String updateStatement = "UPDATE employees " +
+                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "WHERE employee_id="+ EmployeeIDTF.getText();
+                    Statement statement = connectDBS.createStatement();
+                    statement.executeUpdate(updateStatement);
+                    EmployeeNameTF.setEditable(false);
+                    editEmpName.setText("Edit");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.initModality(Modality.APPLICATION_MODAL);
+                    alert.setTitle("Employee Update");
+                    alert.setHeaderText("Employee information updated!");
+                    alert.showAndWait();
+
+                }  catch (Exception io){
+                    io.printStackTrace();
+                }
+
+            }
+
+        });
+        editEmpName.setOnAction(event -> {
+            if (editEmpName.getText().contains("Edit")) {
+                EmployeeNameTF.setEditable(true);
+                editEmpName.setText("Confirm");
+            } else{
+                try {
+                    String updateStatement = "UPDATE employees " +
+                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "WHERE employee_id="+ EmployeeIDTF.getText();
+                    Statement statement = connectDBS.createStatement();
+                    statement.executeUpdate(updateStatement);
+                    EmployeeNameTF.setEditable(false);
+                    editEmpName.setText("Edit");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.initModality(Modality.APPLICATION_MODAL);
+                    alert.setTitle("Employee Update");
+                    alert.setHeaderText("Employee information updated!");
+                    alert.showAndWait();
+
+                }  catch (Exception io){
+                    io.printStackTrace();
+                }
+
+            }
+
+        });
+        editEmpName.setOnAction(event -> {
+            if (editEmpName.getText().contains("Edit")) {
+                EmployeeNameTF.setEditable(true);
+                editEmpName.setText("Confirm");
+            } else{
+                try {
+                    String updateStatement = "UPDATE employees " +
+                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "WHERE employee_id="+ EmployeeIDTF.getText();
+                    Statement statement = connectDBS.createStatement();
+                    statement.executeUpdate(updateStatement);
+                    EmployeeNameTF.setEditable(false);
+                    editEmpName.setText("Edit");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.initModality(Modality.APPLICATION_MODAL);
+                    alert.setTitle("Employee Update");
+                    alert.setHeaderText("Employee information updated!");
+                    alert.showAndWait();
+
+                }  catch (Exception io){
+                    io.printStackTrace();
+                }
+
+            }
+
+        });
+        editEmpName.setOnAction(event -> {
+            if (editEmpName.getText().contains("Edit")) {
+                EmployeeNameTF.setEditable(true);
+                editEmpName.setText("Confirm");
+            } else{
+                try {
+                    String updateStatement = "UPDATE employees " +
+                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "WHERE employee_id="+ EmployeeIDTF.getText();
+                    Statement statement = connectDBS.createStatement();
+                    statement.executeUpdate(updateStatement);
+                    EmployeeNameTF.setEditable(false);
+                    editEmpName.setText("Edit");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.initModality(Modality.APPLICATION_MODAL);
+                    alert.setTitle("Employee Update");
+                    alert.setHeaderText("Employee information updated!");
+                    alert.showAndWait();
+
+                }  catch (Exception io){
+                    io.printStackTrace();
+                }
+
+            }
+
+        });
+        editEmpName.setOnAction(event -> {
+            if (editEmpName.getText().contains("Edit")) {
+                EmployeeNameTF.setEditable(true);
+                editEmpName.setText("Confirm");
+            } else{
+                try {
+                    String updateStatement = "UPDATE employees " +
+                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "WHERE employee_id="+ EmployeeIDTF.getText();
+                    Statement statement = connectDBS.createStatement();
+                    statement.executeUpdate(updateStatement);
+                    EmployeeNameTF.setEditable(false);
+                    editEmpName.setText("Edit");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.initModality(Modality.APPLICATION_MODAL);
+                    alert.setTitle("Employee Update");
+                    alert.setHeaderText("Employee information updated!");
+                    alert.showAndWait();
+
+                }  catch (Exception io){
+                    io.printStackTrace();
+                }
+
+            }
+
+        });
+        /*
+            END OF EDIT BUTTONS
+         */
+
 
 
     }
@@ -219,6 +427,36 @@ public class ProfilePageController implements Initializable {
     @FXML
     private void GoToHomePage(ActionEvent event)throws Exception{
         App.setRoot("hello-view");
+    }
+
+    @FXML
+    void deleteEmployee(ActionEvent event) {
+        EmployeeDBC employeeDBC = new EmployeeDBC();
+        Connection conn = employeeDBC.getConnection();
+
+
+        try {
+            String queryDelete= "DELETE FROM employees where employee_id=" + Integer.parseInt(EmployeeIDTF.getText());
+            Statement  statement = conn.createStatement();
+            statement.executeUpdate(queryDelete);
+
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("You selected the Manager!");
+            alert.setHeaderText("Manager cannot be deleted!");
+            alert.setContentText("You are trying to delete manager, try choosing different employee!");
+            alert.showAndWait();
+        }
+
+
+        try {
+            App.setRoot("hello-view");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }

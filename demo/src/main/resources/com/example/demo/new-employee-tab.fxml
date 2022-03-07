@@ -61,7 +61,7 @@
       </VBox>
       <VBox layoutX="128.0" layoutY="74.0" prefHeight="219.0" prefWidth="119.0">
          <children>
-            <Label fx:id="employeeID" text="208">
+            <Label fx:id="employeeID" text="NaN" visible="false">
                <font>
                   <Font size="13.0" />
                </font>
@@ -165,6 +165,6 @@
          </children>
       </VBox>
       <Button layoutX="162.0" layoutY="334.0" mnemonicParsing="false" onAction="#AddEmployeeToSystem" text="Add to the system" />
-      <Button layoutX="344.0" layoutY="334.0" mnemonicParsing="false" onAction="#CancelOperation" text="Cancel the operation" />
+      <Button fx:id="cancelBtn" layoutX="344.0" layoutY="334.0" mnemonicParsing="false" onAction="#CancelOperation" text="Cancel the operation" />
    </children>
 </AnchorPane>

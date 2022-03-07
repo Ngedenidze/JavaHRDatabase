@@ -3,9 +3,16 @@ package com.example.demo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Connection to 'users' database for login information
+ * */
 public class LoginDBC {
     public Connection conn;
 
+
+    /**
+     * @return connection to database
+     */
     public Connection getConnection(){
         String databaseName = "login_information";
         String dbPassword = "Thegafield_123";

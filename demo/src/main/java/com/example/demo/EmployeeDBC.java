@@ -2,11 +2,17 @@ package com.example.demo;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
-
+/*
+    Database Connection with new_schema(Employee information)
+ */
 public class EmployeeDBC {
+
 
     public Connection conn;
 
+    /*
+        returns connection with database
+     */
     public Connection getConnection(){
         String databaseName = "new_schema";
         String dbPassword = "Thegafield_123";

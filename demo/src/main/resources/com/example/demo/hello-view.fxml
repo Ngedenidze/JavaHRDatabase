@@ -35,7 +35,7 @@
                <Tooltip autoHide="true" text="Employee Table" />
             </tooltip>
          </TableView>
-         <TextArea fx:id="informationTextArea" editable="false" layoutX="61.0" layoutY="511.0" prefHeight="175.0" prefWidth="397.0" />
+         <TextArea fx:id="informationTextArea" editable="false" layoutX="61.0" layoutY="487.0" prefHeight="199.0" prefWidth="397.0" />
          <VBox layoutX="160.0" layoutY="174.0" prefHeight="270.0" prefWidth="298.0">
             <TextField fx:id="IDSearchTF" prefHeight="27.0" prefWidth="187.0" promptText="ID...">
                <VBox.margin>
@@ -156,17 +156,12 @@
         <menus>
           <Menu mnemonicParsing="false" text="Home Page">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="homePageBTN" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Settings">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="signOutBTN" mnemonicParsing="false" text="Sign Out" />
             </items>
           </Menu>
         </menus>

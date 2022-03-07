@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -16,7 +19,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AppController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <TableView fx:id="tvEmployee" layoutX="496.0" layoutY="145.0" onMousePressed="#displayInformation" prefHeight="543.0" prefWidth="944.0" stylesheets="@css/style.css">
+         <TableView fx:id="tvEmployee" layoutX="496.0" layoutY="145.0" onMousePressed="#displayInformation" prefHeight="543.0" prefWidth="944.0" stylesheets="@../../../../../../../../../../../../../IdeaProjects/demo/src/main/resources/com/example/demo/css/style.css">
             <columns>
                <TableColumn fx:id="eIDCol" editable="false" maxWidth="80.0" minWidth="80.0" prefWidth="117.59994506835938" resizable="false" text="ID" />
                <TableColumn fx:id="fnameCol" editable="false" maxWidth="89.60003662109375" minWidth="80.0" prefWidth="89.60003662109375" resizable="false" text="First Name" />
@@ -32,7 +35,7 @@
                <Tooltip autoHide="true" text="Employee Table" />
             </tooltip>
          </TableView>
-         <TextArea fx:id="informationTextArea" editable="false" layoutX="61.0" layoutY="511.0" prefHeight="175.0" prefWidth="397.0" />
+         <TextArea fx:id="informationTextArea" editable="false" layoutX="61.0" layoutY="487.0" prefHeight="199.0" prefWidth="397.0" />
          <VBox layoutX="160.0" layoutY="174.0" prefHeight="270.0" prefWidth="298.0">
             <TextField fx:id="IDSearchTF" prefHeight="27.0" prefWidth="187.0" promptText="ID...">
                <VBox.margin>
@@ -146,9 +149,22 @@
                </VBox.margin>
             </Label>
          </VBox>
-         <Button fx:id="buttonInfo" layoutX="318.0" layoutY="469.0" mnemonicParsing="false" onAction="#displayInformation" text="Display the information" />
          <Button fx:id="goToProfileBTN" layoutX="61.0" layoutY="709.0" mnemonicParsing="false" onAction="#goToProfile" text="Go to Profile Page" />
          <Button fx:id="addNewEmployeeBTN" layoutX="1321.0" layoutY="722.0" mnemonicParsing="false" onAction="#addEmployee" text="Add new employee" />
       </Pane>
+      <MenuBar maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Home Page">
+            <items>
+              <MenuItem fx:id="homePageBTN" mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Settings">
+            <items>
+              <MenuItem fx:id="signOutBTN" mnemonicParsing="false" text="Sign Out" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

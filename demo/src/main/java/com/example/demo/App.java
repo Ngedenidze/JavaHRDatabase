@@ -17,6 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        //Loading page
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login-page.fxml"));
         scene = new Scene(fxmlLoader.load(), 1600, 800);
         stage.setTitle("Employee Management");
@@ -28,13 +29,13 @@ public class App extends Application {
         stage.show();
     }
     public static void setRoot(String fxml) throws IOException {
+        //Method to set scene root
         scene.setRoot(loadFXML(fxml));
 
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-
         return fxmlLoader.load();
     }
 

@@ -9,8 +9,12 @@ public class Employee {
     private Integer job_id;
     private double salary;
     private Integer manager_id;
+    private Integer department_id;
 
-
+    /**
+     *  ToString method to print out the information from the Employee class instance
+     * @return Employee information in String format
+     */
     @Override
     public String toString() {
         return  "Employee:\n" +
@@ -20,7 +24,18 @@ public class Employee {
                 "\nEmployee Salary: " + salary + "\nDepartment ID: " + department_id;
     }
 
-    private Integer department_id;
+    /**
+     * Constructor with all attributes of Employee Class
+     * @param employee_id Employee ID
+     * @param first_name Employee First Name
+     * @param last_name Employee Last Name
+     * @param email Email Address
+     * @param phone_number Phone Number
+     * @param job_id Employee Job ID
+     * @param salary Employee Salary
+     * @param manager_id Manager ID
+     * @param department_id Department ID
+     */
     public Employee(int employee_id, String first_name, String last_name,
                     String email, String phone_number,
                     int job_id, double salary, int manager_id, int department_id) {
@@ -35,6 +50,9 @@ public class Employee {
         this.department_id = department_id;
     }
 
+    /*
+        getters and setters
+     */
     public Integer getEmployee_id() {
         return employee_id;
     }
@@ -107,7 +125,7 @@ public class Employee {
         this.department_id = department_id;
     }
 
-    //Constructor
+    //Default Constructor (can be used for getters and setters)
     public Employee() {
 
     }
