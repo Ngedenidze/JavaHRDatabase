@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,8 +8,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -54,7 +51,9 @@ public class LoginPageController implements Initializable {
 
             while (resultSet.next()){
                 if (resultSet.getInt(1) == 1){
+
                     App.setRoot("hello-view");
+
                 }
             }
 

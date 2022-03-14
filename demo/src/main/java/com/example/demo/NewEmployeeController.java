@@ -1,20 +1,26 @@
 package com.example.demo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.Modality;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
 
-public class NewEmployeeController {
+public class NewEmployeeController implements Initializable {
+    ObservableList<String> officeChoseChooseObsList= FXCollections.observableArrayList();
+    ObservableList<Integer> officeJobIdObsList= FXCollections.observableArrayList();
+    ObservableList<Integer> ManagerIdObsList= FXCollections.observableArrayList();
+    @FXML
+    private ChoiceBox<String> jobIDChoBox;
+
+    @FXML
+    private ChoiceBox<Integer> managerIDChoBox;
 
     @FXML
     private Label employeeID;
@@ -52,58 +58,92 @@ public class NewEmployeeController {
     @FXML
     private TextField newEmployeeDepID;
 
+
+
     @FXML
-    void AddEmployeeToSystem(ActionEvent event) {
-        EmployeeDBC dbc = new EmployeeDBC();
-        Connection conn = dbc.getConnection();
+    void AddEmployeeToSystem(ActionEvent event) throws SQLException {
+       EmployeeDBC.getConnection();
+
+
+
+
+       int departmentId = 1;
+       String managerQuery = "Select department_id from employees where employee_id=" + managerIDChoBox.getValue();
+       ResultSet rs = EmployeeDBC.getResultSet(managerQuery);
+       while (rs.next()){
+           departmentId=  rs.getInt(1);
+       }
 
 //
 //
 //
         try {
             String insertQuery = "insert into employees (first_name, last_name, email," +
-                    "phone_number, hire_date, job_id, salary, manager_id, department_id)" +
+                    "phone_number, hire_date, job_title, salary, manager_id, department_id,job_id)" +
                     " values('" + newEmployeeFName.getText() + "', '"
                     + newEmployeeLName.getText() + "', '" + newEmployeeEmail.getText() + "', '" +
-                    newEmployeePNumber.getText() + "', '" + Date.valueOf(newEmployeeHireDate.getText())
-                    + "', " + Integer.parseInt(newEmployeeJID.getText())+ "," +
-                    Double.parseDouble(newEmployeeSalary.getText() )+ "," + Integer.getInteger(newEmployeeMID.getText())
-                    + "," + Integer.getInteger(newEmployeeDepID.getText()) + ")";
-            Statement statement = conn.createStatement();
-            statement.executeUpdate(insertQuery);
+                    newEmployeePNumber.getText() + "', current_date()"
+                    + ", '" + jobIDChoBox.getValue() + "'," +
+                    Double.parseDouble(newEmployeeSalary.getText() )+ "," + managerIDChoBox.getValue()
+                    + "," + departmentId + ", " + officeJobIdObsList.get(officeChoseChooseObsList.indexOf(jobIDChoBox.getValue()))+")";
 
+            EmployeeDBC.updateSelect(insertQuery);
+            Alerts.throwInfoAlert("Employee added!", "","Employee Added to the system.");
+            Stage stage = (Stage) newEmployeeFName.getScene().getWindow();
+            stage.close();
+            App.setRoot("hello-view");
            } catch (Exception ex){
             ex.printStackTrace();
             ex.getCause();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setTitle("Wrong input!");
-            alert.setHeaderText("Wrong input type in text fields!");
-            alert.setContentText("One or more inputs have wrong type! Try again!");
-
-            alert.showAndWait();
+            Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
         }
-        String idQuery = "Select * from employees where first_name ='" + newEmployeeFName.getText() + "' and last_name='" + newEmployeeLName.getText() + "';";
-        try {
-            Statement statement = conn.createStatement();
-            ResultSet queryResult = statement.executeQuery(idQuery);
-            while (queryResult.next()){
-            employeeID.setText(String.valueOf(queryResult.getInt("employee_id")));
-            employeeID.setVisible(true);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            ex.getCause();
 
-        }
     }
 
     @FXML
     void CancelOperation(ActionEvent event) {
-
-            Stage stage = (Stage) employeeID.getScene().getWindow();
+        Stage stage = (Stage) newEmployeeFName.getScene().getWindow();
             stage.close();
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        String jobQuery= """
+                select
+                distinct job_title, job_id
+                from jobs""";
+        ResultSet result;
+        try {
+            result = EmployeeDBC.getResultSet(jobQuery);
+            while (result.next()){
+                 officeJobIdObsList.add(result.getInt(2));
+                officeChoseChooseObsList.add(result.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        jobIDChoBox.setItems(officeChoseChooseObsList);
+
+
+        String managerQuery= """
+                select
+                distinct manager_id
+                from employees""";
+
+        try {
+            result = EmployeeDBC.getResultSet(managerQuery);
+            while (result.next()){
+                ManagerIdObsList.add(result.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        managerIDChoBox.setItems(ManagerIdObsList);
+
+
+    }
 }

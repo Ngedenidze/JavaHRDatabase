@@ -110,8 +110,7 @@ public class AppController implements Initializable{
     //On application start
     public void initialize(URL url, ResourceBundle resource){
         //Connection variables
-        EmployeeDBC connectNow = new EmployeeDBC();
-        Connection connectDBS = connectNow.getConnection();
+        Connection connectDBS = EmployeeDBC.getConnection();
 
         //Query to select data from database table
         String connectionQuery = "select employee_id,first_name,last_name,email,phone_number,job_id,salary,manager_id,department_id from employees";
@@ -247,13 +246,7 @@ public class AppController implements Initializable{
 
         //Applying filter
         tvEmployee.setItems(sortedData);
-        homePageBTN.setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setTitle("Home Page");
-            alert.setHeaderText("You are already on the home page");
-            alert.showAndWait();
-        });
+        homePageBTN.setOnAction(event -> Alerts.warningInfoAlert("Home Page","You are already on the home page", ""));
         signOutBTN.setOnAction(event -> {
             try {
                 App.setRoot("login-page");
@@ -285,13 +278,8 @@ public class AppController implements Initializable{
         try{
             //if Employee is not selected in the table throw an error
          if(selectedEmployee == null){
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-             alert.initModality(Modality.APPLICATION_MODAL);
-             alert.setTitle("No Employee is selected!");
-             alert.setHeaderText("Select the employee!");
-             alert.setContentText("To view the profile page of the employee, you have to select them from the table!");
-
-             alert.showAndWait();
+             Alerts.errorInfoAlert("No Employee is selected!","Select the employee!",
+                     "To view the profile page of the employee, you have to select them from the table!");
          }else {
              App.setRoot("profile-page");
          }
@@ -314,20 +302,10 @@ public class AppController implements Initializable{
     @FXML
     void addEmployee(ActionEvent event) {
 
+        Stage stage = App.newWindow("new-employee-tab", "New Employee Tab");
+        assert stage != null;
+        stage.setResizable(false);
 
-            Parent root;
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("new-employee-tab.fxml"));
-                root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setTitle("New Employee");
-                stage.setScene(new Scene(root, 600, 400));
-                stage.show();
-                // Hide this current window (if this is what you want)
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
 
     }
     public static Employee displayInformation(){

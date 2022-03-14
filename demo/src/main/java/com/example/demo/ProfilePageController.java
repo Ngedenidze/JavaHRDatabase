@@ -8,8 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.TableHeaderRow;
-import javafx.stage.Modality;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,12 +19,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.example.demo.App.setRoot;
-
 public class ProfilePageController implements Initializable {
 
-    @FXML
-    private TextField DepartmentIDTF;
 
     @FXML
     private TextField EmailTF;
@@ -37,8 +31,6 @@ public class ProfilePageController implements Initializable {
     @FXML
     private TextField EmployeeNameTF;
 
-    @FXML
-    private TextField JobIDTF;
 
     @FXML
     private TextField LastNameTF;
@@ -55,8 +47,6 @@ public class ProfilePageController implements Initializable {
     @FXML
     private Button editEmail;
 
-    @FXML
-    private Button editEmpID;
 
     @FXML
     private Button editEmpLastName;
@@ -155,8 +145,7 @@ public class ProfilePageController implements Initializable {
         choiceBoxDepID.setValue(selectedEmployee.getDepartment_id());
         choiceBoxJobID.setValue(selectedEmployee.getJob_id());
 
-        EmployeeDBC connectNow = new EmployeeDBC();
-        Connection connectDBS = connectNow.getConnection();
+        Connection connectDBS = EmployeeDBC.getConnection();
 
         try {
 
@@ -272,13 +261,10 @@ public class ProfilePageController implements Initializable {
                         statement.executeUpdate(updateStatement);
                         EmployeeNameTF.setEditable(false);
                         editEmpName.setText("Edit");
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.initModality(Modality.APPLICATION_MODAL);
-                        alert.setTitle("Employee Update");
-                        alert.setHeaderText("Employee information updated!");
-                        alert.showAndWait();
+                        Alerts.throwInfoAlert("Employee Update","Employee information updated!","");
 
                     }  catch (Exception io){
+                        Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
                         io.printStackTrace();
                     }
 
@@ -286,136 +272,89 @@ public class ProfilePageController implements Initializable {
 
             });
 
-        editEmpName.setOnAction(event -> {
-            if (editEmpName.getText().contains("Edit")) {
-                EmployeeNameTF.setEditable(true);
-                editEmpName.setText("Confirm");
+        editEmpLastName.setOnAction(event -> {
+            if (editEmpLastName.getText().contains("Edit")) {
+                LastNameTF.setEditable(true);
+                editEmpLastName.setText("Confirm");
             } else{
                 try {
                     String updateStatement = "UPDATE employees " +
-                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "SET last_name = '"+ LastNameTF.getText() +"'" +
                             "WHERE employee_id="+ EmployeeIDTF.getText();
                     Statement statement = connectDBS.createStatement();
                     statement.executeUpdate(updateStatement);
-                    EmployeeNameTF.setEditable(false);
-                    editEmpName.setText("Edit");
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.initModality(Modality.APPLICATION_MODAL);
-                    alert.setTitle("Employee Update");
-                    alert.setHeaderText("Employee information updated!");
-                    alert.showAndWait();
+                    LastNameTF.setEditable(false);
+                    editEmpLastName.setText("Edit");
+                    Alerts.throwInfoAlert("Employee Update","Employee information updated!","");
 
                 }  catch (Exception io){
+                    Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
                     io.printStackTrace();
                 }
 
             }
 
         });
-        editEmpName.setOnAction(event -> {
-            if (editEmpName.getText().contains("Edit")) {
-                EmployeeNameTF.setEditable(true);
-                editEmpName.setText("Confirm");
+        editPhoneNumber.setOnAction(event -> {
+            if (editPhoneNumber.getText().contains("Edit")) {
+                PhoneNumberTF.setEditable(true);
+                editPhoneNumber.setText("Confirm");
             } else{
                 try {
                     String updateStatement = "UPDATE employees " +
-                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "SET phone_number = '"+ PhoneNumberTF.getText() +"'" +
                             "WHERE employee_id="+ EmployeeIDTF.getText();
                     Statement statement = connectDBS.createStatement();
                     statement.executeUpdate(updateStatement);
-                    EmployeeNameTF.setEditable(false);
-                    editEmpName.setText("Edit");
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.initModality(Modality.APPLICATION_MODAL);
-                    alert.setTitle("Employee Update");
-                    alert.setHeaderText("Employee information updated!");
-                    alert.showAndWait();
+                    PhoneNumberTF.setEditable(false);
+                    editPhoneNumber.setText("Edit");
+                    Alerts.throwInfoAlert("Employee Update","Employee information updated!","");
 
                 }  catch (Exception io){
+                    Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
                     io.printStackTrace();
                 }
 
             }
 
         });
-        editEmpName.setOnAction(event -> {
-            if (editEmpName.getText().contains("Edit")) {
-                EmployeeNameTF.setEditable(true);
-                editEmpName.setText("Confirm");
+        editEmail.setOnAction(event -> {
+            if (editEmail.getText().contains("Edit")) {
+                EmailTF.setEditable(true);
+                editEmail.setText("Confirm");
             } else{
                 try {
                     String updateStatement = "UPDATE employees " +
-                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
+                            "SET email = '"+ EmailTF.getText() +"'" +
                             "WHERE employee_id="+ EmployeeIDTF.getText();
                     Statement statement = connectDBS.createStatement();
                     statement.executeUpdate(updateStatement);
-                    EmployeeNameTF.setEditable(false);
-                    editEmpName.setText("Edit");
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.initModality(Modality.APPLICATION_MODAL);
-                    alert.setTitle("Employee Update");
-                    alert.setHeaderText("Employee information updated!");
-                    alert.showAndWait();
+                    EmailTF.setEditable(false);
+                    editEmail.setText("Edit");
+                    Alerts.throwInfoAlert("Employee Update","Employee information updated!","");
 
                 }  catch (Exception io){
+                    Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
                     io.printStackTrace();
                 }
 
             }
 
         });
-        editEmpName.setOnAction(event -> {
-            if (editEmpName.getText().contains("Edit")) {
-                EmployeeNameTF.setEditable(true);
-                editEmpName.setText("Confirm");
-            } else{
-                try {
-                    String updateStatement = "UPDATE employees " +
-                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
-                            "WHERE employee_id="+ EmployeeIDTF.getText();
-                    Statement statement = connectDBS.createStatement();
-                    statement.executeUpdate(updateStatement);
-                    EmployeeNameTF.setEditable(false);
-                    editEmpName.setText("Edit");
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.initModality(Modality.APPLICATION_MODAL);
-                    alert.setTitle("Employee Update");
-                    alert.setHeaderText("Employee information updated!");
-                    alert.showAndWait();
 
-                }  catch (Exception io){
-                    io.printStackTrace();
-                }
+        /*
+        needs editing
+         */
+        editDepID.setOnAction(event -> {
 
-            }
 
         });
-        editEmpName.setOnAction(event -> {
-            if (editEmpName.getText().contains("Edit")) {
-                EmployeeNameTF.setEditable(true);
-                editEmpName.setText("Confirm");
-            } else{
-                try {
-                    String updateStatement = "UPDATE employees " +
-                            "SET first_name = '"+ EmployeeNameTF.getText() +"'" +
-                            "WHERE employee_id="+ EmployeeIDTF.getText();
-                    Statement statement = connectDBS.createStatement();
-                    statement.executeUpdate(updateStatement);
-                    EmployeeNameTF.setEditable(false);
-                    editEmpName.setText("Edit");
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.initModality(Modality.APPLICATION_MODAL);
-                    alert.setTitle("Employee Update");
-                    alert.setHeaderText("Employee information updated!");
-                    alert.showAndWait();
-
-                }  catch (Exception io){
-                    io.printStackTrace();
-                }
-
-            }
+        editJobID.setOnAction(event -> {
 
         });
+        /*
+            finish editing
+         */
         /*
             END OF EDIT BUTTONS
          */
@@ -431,8 +370,7 @@ public class ProfilePageController implements Initializable {
 
     @FXML
     void deleteEmployee(ActionEvent event) {
-        EmployeeDBC employeeDBC = new EmployeeDBC();
-        Connection conn = employeeDBC.getConnection();
+        Connection conn = EmployeeDBC.getConnection();
 
 
         try {
@@ -441,12 +379,9 @@ public class ProfilePageController implements Initializable {
             statement.executeUpdate(queryDelete);
 
         } catch (SQLException e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setTitle("You selected the Manager!");
-            alert.setHeaderText("Manager cannot be deleted!");
-            alert.setContentText("You are trying to delete manager, try choosing different employee!");
-            alert.showAndWait();
+           Alerts.errorInfoAlert("You selected the Manager!",
+                            "Manager cannot be deleted!",
+                            "You are trying to delete manager, try choosing different employee!");
         }
 
 

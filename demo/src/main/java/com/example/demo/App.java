@@ -13,17 +13,19 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage stage;
 
     @Override
     public void start(Stage stage) throws IOException {
 
         //Loading page
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login-page.fxml"));
-        scene = new Scene(fxmlLoader.load(), 1600, 800);
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("hello-view.fxml"));
+        App.stage = stage;
+        scene = new Scene(fxmlLoader.load());
         stage.setTitle("Employee Management");
-        stage.sizeToScene();
 
-        Image image = new Image("file:icon.png");
+
+        Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\icon.png");
         stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
@@ -31,12 +33,32 @@ public class App extends Application {
     public static void setRoot(String fxml) throws IOException {
         //Method to set scene root
         scene.setRoot(loadFXML(fxml));
+        stage.setMaximized(true);
 
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+    public static Stage newWindow(String pageFxml, String pageTitle){
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(pageFxml+".fxml"));
+            root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle(pageTitle);
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+            Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\icon.png");
+            stage.getIcons().add(image);
+            return stage;
+            // Hide this current window (if this is what you want)
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void main(String[] args) {

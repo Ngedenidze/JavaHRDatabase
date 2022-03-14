@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1600.0" style="-fx-background-color: #f3f3f3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProfilePageController">
+<AnchorPane prefHeight="800.0" prefWidth="1600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ProfilePageController">
     <Label layoutX="700.0" layoutY="30.0" text="Profile Page">
         <font>
           <Font size="38.0" />
@@ -29,15 +29,12 @@
           <Font size="19.0" />
         </font>
     </Label>
-    <MenuBar layoutY="4.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <MenuBar layoutY="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Menu fx:id="homePageBTN" mnemonicParsing="false" onAction="#GoToHomePage" style="-fx-font-color: red;" text="Home Page">
             <MenuItem mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page" />
         </Menu>
         <Menu mnemonicParsing="false" text="Settings">
-            <MenuItem mnemonicParsing="false" text="Open Settings" />
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="Help Page" />
+            <MenuItem mnemonicParsing="false" text="Sign out" />
         </Menu>
     </MenuBar>
     <TabPane layoutX="841.0" layoutY="156.0" prefHeight="530.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
@@ -69,7 +66,7 @@
             </AnchorPane>
         </Tab>
     </TabPane>
-   <Button fx:id="uploadPicture" layoutX="163.0" layoutY="441.0" mnemonicParsing="false" text="Upload Picture" />
+   <Button fx:id="uploadPicture" layoutX="163.0" layoutY="441.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="102.0" text="Upload Picture" />
    <VBox layoutX="64.0" layoutY="201.0" prefHeight="220.0" prefWidth="220.0">
       <children>
       
@@ -171,9 +168,9 @@
    <Button fx:id="editPhoneNumber" layoutX="715.0" layoutY="393.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
    <Button fx:id="editEmail" layoutX="715.0" layoutY="441.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
    <Button fx:id="editEmpLastName" layoutX="715.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
-   <Button fx:id="deleteEmployee" layoutX="683.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteEmployee" text="Delete Employee" />
+   <Button fx:id="deleteEmployee" layoutX="683.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="24.0" prefWidth="112.0" text="Delete Employee" />
    <ChoiceBox fx:id="choiceBoxDepID" layoutX="537.0" layoutY="536.0" onMouseClicked="#onActionDepartmentID" prefHeight="26.0" prefWidth="162.0" />
    <ChoiceBox fx:id="choiceBoxJobID" layoutX="537.0" layoutY="578.0" prefHeight="26.0" prefWidth="162.0" />
    <Button fx:id="editDepID" layoutX="715.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
-   <Button fx:id="editEmpName2" layoutX="715.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
+   <Button fx:id="editJobID" layoutX="715.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
 </AnchorPane>

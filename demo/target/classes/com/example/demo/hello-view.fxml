@@ -16,14 +16,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AppController">
+<AnchorPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AppController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <TableView fx:id="tvEmployee" layoutX="496.0" layoutY="145.0" onMousePressed="#displayInformation" prefHeight="543.0" prefWidth="944.0" stylesheets="@../../../../../../../../../../../../../IdeaProjects/demo/src/main/resources/com/example/demo/css/style.css">
+         <TableView fx:id="tvEmployee" layoutX="496.0" layoutY="145.0" onMousePressed="#displayInformation" prefHeight="543.0" prefWidth="944.0">
             <columns>
                <TableColumn fx:id="eIDCol" editable="false" maxWidth="80.0" minWidth="80.0" prefWidth="117.59994506835938" resizable="false" text="ID" />
                <TableColumn fx:id="fnameCol" editable="false" maxWidth="89.60003662109375" minWidth="80.0" prefWidth="89.60003662109375" resizable="false" text="First Name" />
-               <TableColumn fx:id="lnameCol" maxWidth="104.0" minWidth="70.39996337890625" prefWidth="104.0" resizable="false" text="Last Name" />
+               <TableColumn fx:id="lnameCol" editable="false" maxWidth="104.0" minWidth="70.39996337890625" prefWidth="104.0" resizable="false" text="Last Name" />
                <TableColumn fx:id="emailCol" editable="false" maxWidth="124.79998779296875" minWidth="46.4000244140625" prefWidth="124.79998779296875" resizable="false" text="Email" />
                <TableColumn fx:id="phoneNCol" editable="false" maxWidth="109.60003662109375" minWidth="2.4000244140625" prefWidth="109.60003662109375" resizable="false" text="Phone Number" />
                <TableColumn fx:id="jobIDCol" editable="false" maxWidth="121.59991455078125" minWidth="0.0" prefWidth="69.59991455078125" resizable="false" text="Job ID" />
@@ -86,7 +86,7 @@
                </tooltip>
             </TextField>
          </VBox>
-         <Label layoutX="160.0" layoutY="126.0" text="Search By:">
+         <Label layoutX="160.0" layoutY="126.0" text="Search">
             <font>
                <Font size="27.0" />
             </font>
@@ -99,8 +99,8 @@
                <Font size="48.0" />
             </font>
          </Label>
-         <VBox alignment="TOP_RIGHT" layoutX="29.0" layoutY="174.0" prefHeight="249.0" prefWidth="110.0">
-            <Label text="ID:">
+         <VBox alignment="TOP_RIGHT" layoutX="27.0" layoutY="174.0" prefHeight="249.0" prefWidth="110.0">
+            <Label style="-fx-font-family: sansserif;" text="ID:">
                <font>
                   <Font size="15.0" />
                </font>
@@ -149,8 +149,8 @@
                </VBox.margin>
             </Label>
          </VBox>
-         <Button fx:id="goToProfileBTN" layoutX="61.0" layoutY="709.0" mnemonicParsing="false" onAction="#goToProfile" text="Go to Profile Page" />
-         <Button fx:id="addNewEmployeeBTN" layoutX="1321.0" layoutY="722.0" mnemonicParsing="false" onAction="#addEmployee" text="Add new employee" />
+         <Button fx:id="goToProfileBTN" layoutX="61.0" layoutY="709.0" mnemonicParsing="false" onAction="#goToProfile" prefHeight="23.0" prefWidth="122.0" text="Go to Profile Page" />
+         <Button fx:id="addNewEmployeeBTN" layoutX="1303.0" layoutY="720.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="23.0" prefWidth="137.0" text="Add new employee" />
       </Pane>
       <MenuBar maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
