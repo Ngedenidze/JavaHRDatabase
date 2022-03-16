@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,7 +32,11 @@ public class LoginPageController implements Initializable {
 
     @FXML
     void forgotPassword() {
-
+        try {
+            App.setRoot("forgot-password-page");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -46,8 +51,8 @@ public class LoginPageController implements Initializable {
             String verifyLoginQuery = "select count(1) from users where username='"
                     + usernameTextField.getText()+"' and password = SHA2(CONCAT('"+
                     passwordTextField.getText() +"','241'),256)";
-            Statement statement = connectDBS.createStatement();
-            ResultSet resultSet = statement.executeQuery(verifyLoginQuery);
+
+            ResultSet resultSet = LoginDBC.getResultSet(verifyLoginQuery);;
 
             while (resultSet.next()){
                 if (resultSet.getInt(1) == 1){

@@ -1,5 +1,8 @@
 package com.example.demo;
 
+/**
+ * Public class for employee
+ */
 public class Employee {
     private Integer employee_id;
     private String first_name;
@@ -50,8 +53,9 @@ public class Employee {
         this.department_id = department_id;
     }
 
-    /*
-        getters and setters
+    /**
+     * Getter method for employee id
+     * @return  employee id
      */
     public Integer getEmployee_id() {
         return employee_id;
@@ -61,6 +65,10 @@ public class Employee {
         this.employee_id = employee_id;
     }
 
+    /**
+     * Getter method for employee first name
+     * @return  Employee's first name
+     */
     public String getFirst_name() {
         return first_name;
     }
@@ -69,6 +77,10 @@ public class Employee {
         this.first_name = first_name;
     }
 
+    /**
+     * Getter method for employee last name
+     * @return Employee's last name
+     */
     public String getLast_name() {
         return last_name;
     }
@@ -77,6 +89,10 @@ public class Employee {
         this.last_name = last_name;
     }
 
+    /**
+     * Getter method for email attribute
+     * @return  email
+     */
     public String getEmail() {
         return email;
     }
@@ -85,6 +101,10 @@ public class Employee {
         this.email = email;
     }
 
+    /**
+     * Getter method for employee phone number
+     * @return Employee's phone number
+     */
     public String getPhone_number() {
         return phone_number;
     }
@@ -93,6 +113,10 @@ public class Employee {
         this.phone_number = phone_number;
     }
 
+    /**
+     * Getter method for employee job id
+     * @return  Employee's job id
+     */
     public Integer getJob_id() {
         return job_id;
     }
@@ -117,6 +141,10 @@ public class Employee {
         this.manager_id = manager_id;
     }
 
+    /**
+     * Getter method for department id
+     * @return department id
+     */
     public Integer getDepartment_id() {
         return department_id;
     }
@@ -125,7 +153,9 @@ public class Employee {
         this.department_id = department_id;
     }
 
-    //Default Constructor (can be used for getters and setters)
+    /**
+     * Default constructor for employee class
+     */
     public Employee() {
 
     }

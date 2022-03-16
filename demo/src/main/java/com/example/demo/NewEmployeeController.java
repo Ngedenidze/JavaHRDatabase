@@ -5,13 +5,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * controller class for new employee tab
+ */
 public class NewEmployeeController implements Initializable {
     ObservableList<String> officeChoseChooseObsList= FXCollections.observableArrayList();
     ObservableList<Integer> officeJobIdObsList= FXCollections.observableArrayList();

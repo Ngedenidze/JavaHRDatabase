@@ -13,6 +13,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -32,9 +33,6 @@
     <MenuBar layoutY="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Menu fx:id="homePageBTN" mnemonicParsing="false" onAction="#GoToHomePage" style="-fx-font-color: red;" text="Home Page">
             <MenuItem mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page" />
-        </Menu>
-        <Menu mnemonicParsing="false" text="Settings">
-            <MenuItem mnemonicParsing="false" text="Sign out" />
         </Menu>
     </MenuBar>
     <TabPane layoutX="841.0" layoutY="156.0" prefHeight="530.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
@@ -66,15 +64,18 @@
             </AnchorPane>
         </Tab>
     </TabPane>
-   <Button fx:id="uploadPicture" layoutX="163.0" layoutY="441.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="102.0" text="Upload Picture" />
+   <Button fx:id="uploadPicture" disable="true" layoutX="163.0" layoutY="441.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="102.0" text="Upload Picture" visible="false" />
    <VBox layoutX="64.0" layoutY="201.0" prefHeight="220.0" prefWidth="220.0">
       <children>
       
-                <ImageView fitHeight="167.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="profilePictureBox" fitHeight="167.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
       
                     <effect>
                   <ColorAdjust />
               </effect>
+            <image>
+               <Image url="@../../../../java/com/example/demo/pictures/1250689.png" />
+            </image>
           </ImageView>
       </children>
    </VBox>
@@ -173,4 +174,5 @@
    <ChoiceBox fx:id="choiceBoxJobID" layoutX="537.0" layoutY="578.0" prefHeight="26.0" prefWidth="162.0" />
    <Button fx:id="editDepID" layoutX="715.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
    <Button fx:id="editJobID" layoutX="715.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
+   <Button layoutX="64.0" layoutY="660.0" mnemonicParsing="false" onAction="#GoToHomePage" prefHeight="24.0" prefWidth="74.0" text="Go Back" />
 </AnchorPane>

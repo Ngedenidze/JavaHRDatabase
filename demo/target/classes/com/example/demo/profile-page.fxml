@@ -13,6 +13,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -70,11 +71,14 @@
    <VBox layoutX="64.0" layoutY="201.0" prefHeight="220.0" prefWidth="220.0">
       <children>
       
-                <ImageView fitHeight="167.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="profilePictureBox" fitHeight="167.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
       
                     <effect>
                   <ColorAdjust />
               </effect>
+            <image>
+               <Image url="@pictures/101.jpg" />
+            </image>
           </ImageView>
       </children>
    </VBox>

@@ -8,17 +8,19 @@ package com.example.demo;
 
 
 //Imports
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.skin.TableHeaderRow;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,17 +28,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javafx.fxml.Initializable;
-import javafx.scene.control.skin.TableHeaderRow;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * main page controller class
+ * implements Initializable for starting the class fxml file
+ */
 public class AppController implements Initializable{
 
     //Private variables for FXML file
@@ -58,9 +57,11 @@ public class AppController implements Initializable{
     @FXML
     private TableView <Employee> tvEmployee;
 
-    //Table Columns
+    /**
+     * Table Columns
+     */
     @FXML
-    public TableColumn<Employee,Integer> eIDCol;
+    public TableColumn<Employee,Integer>eIDCol;
     @FXML
     private TableColumn<Employee,String> fnameCol;
     @FXML
@@ -93,7 +94,9 @@ public class AppController implements Initializable{
     private TextField JobIDSearchTF;
 
 
-    //Text areas
+    /**
+     * information text area
+     */
     @FXML
     public TextArea informationTextArea;
 
@@ -261,17 +264,14 @@ public class AppController implements Initializable{
     /**
      * FXML file methods
      */
-    @FXML
-    private void makeTextChange(){
-
-    }
 
     //Selected Employee from the table
     public static Employee selectedEmployee;
 
 
-    /*
-        Method to load the profile page with selected Employee Information
+    /**
+     *  Method to load the profile page with selected Employee Information
+     * @param event event
      */
     @FXML
     public void goToProfile(ActionEvent event) {
@@ -300,7 +300,7 @@ public class AppController implements Initializable{
     }
 
     @FXML
-    void addEmployee(ActionEvent event) {
+    void addEmployee(ActionEvent event) throws Exception {
 
         Stage stage = App.newWindow("new-employee-tab", "New Employee Tab");
         assert stage != null;
@@ -308,6 +308,10 @@ public class AppController implements Initializable{
 
 
     }
+
+    /**
+     * @return selected employee from the table
+     */
     public static Employee displayInformation(){
         return selectedEmployee;
     }

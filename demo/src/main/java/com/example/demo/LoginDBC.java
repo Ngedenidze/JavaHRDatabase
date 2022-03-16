@@ -1,19 +1,18 @@
 package com.example.demo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 /**
  * Connection to 'users' database for login information
  * */
 public class LoginDBC {
-    public Connection conn;
+    public static Connection conn;
 
 
     /**
      * @return connection to database
      */
-    public Connection getConnection(){
+    public static Connection getConnection(){
         String databaseName = "login_information";
         String dbPassword = "Thegafield_123";
         String dbUsername = "root";
@@ -27,5 +26,10 @@ public class LoginDBC {
             e.printStackTrace();
         }
         return conn;
+    }
+    public static ResultSet getResultSet(String Query) throws SQLException {
+        conn = LoginDBC.getConnection();
+        Statement stm = conn.createStatement();
+        return stm.executeQuery(Query);
     }
 }

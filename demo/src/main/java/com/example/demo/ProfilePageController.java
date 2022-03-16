@@ -8,7 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.TableHeaderRow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -19,108 +23,77 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * controller class for profile page fxml file
+ */
 public class ProfilePageController implements Initializable {
-
-
-    @FXML
-    private TextField EmailTF;
-
-    @FXML
-    private TextField EmployeeIDTF;
-
-    @FXML
-    private TextField EmployeeNameTF;
-
-
-    @FXML
-    private TextField LastNameTF;
-
-    @FXML
-    private TextField PhoneNumberTF;
-
-    @FXML
-    private Button deleteEmployee;
-
-    @FXML
-    private Button editDepID;
-
-    @FXML
-    private Button editEmail;
-
-
-    @FXML
-    private Button editEmpLastName;
-
-    @FXML
-    private Button editEmpName;
-
-    @FXML
-    private Button editJobID;
-
-    @FXML
-    private Button editPhoneNumber;
-
-    @FXML
-    private Menu homePageBTN;
-
-    @FXML
-    private Button uploadPicture;
-
-    @FXML
-    private TableView<Department> tvLocations;
-
-    @FXML
-    private TableColumn<Department, Integer> locationIDCol;
-
-    @FXML
-    private TableColumn<Department, String> postalCodeCol;
-
-    @FXML
-    private TableColumn<Department, String> streetAdCol;
-
-    @FXML
-    private TableColumn<Department, String> cityCol;
-
-    @FXML
-    private TableColumn<Department, String> countryCol;
-
-    @FXML
-    private TableColumn<Department, Integer> depIDCol;
-
-    @FXML
-    private TableColumn<Department, String> depNameCol;
-
-    @FXML
-    private Label labelOne;
-
-    @FXML
-    private TableColumn<Job, Integer> jobIDCol;
-
-    @FXML
-    private TableColumn<Job, String> jobTitleCol;
-
-    @FXML
-    private TableColumn<Job, Double> maxSalaryCol;
-
-    @FXML
-    private TableColumn<Job, Double> minSalaryCol;
-
-    @FXML
-    private TableView<Job> tvJobs;
-
-    @FXML
-    private ChoiceBox<Integer> choiceBoxDepID;
-
-    @FXML
-    private ChoiceBox<Integer> choiceBoxJobID;
-
-
-
 
     ObservableList<Job> jobSearchObservableList = FXCollections.observableArrayList();
     ObservableList<Department> departmentSearchObservableList = FXCollections.observableArrayList();
     ObservableList<Integer> departmentIDObservableList = FXCollections.observableArrayList();
     ObservableList<Integer> jobIDObservableList = FXCollections.observableArrayList();
+    @FXML
+    private ImageView profilePictureBox;
+    @FXML
+    private TextField EmailTF;
+    @FXML
+    private TextField EmployeeIDTF;
+    @FXML
+    private TextField EmployeeNameTF;
+    @FXML
+    private TextField LastNameTF;
+    @FXML
+    private TextField PhoneNumberTF;
+    @FXML
+    private Button deleteEmployee;
+    @FXML
+    private Button editDepID;
+    @FXML
+    private Button editEmail;
+    @FXML
+    private Button editEmpLastName;
+    @FXML
+    private Button editEmpName;
+    @FXML
+    private Button editJobID;
+    @FXML
+    private Button editPhoneNumber;
+    @FXML
+    private Menu homePageBTN;
+    @FXML
+    private Button uploadPicture;
+    @FXML
+    private TableView<Department> tvLocations;
+    @FXML
+    private TableColumn<Department, Integer> locationIDCol;
+    @FXML
+    private TableColumn<Department, String> postalCodeCol;
+    @FXML
+    private TableColumn<Department, String> streetAdCol;
+    @FXML
+    private TableColumn<Department, String> cityCol;
+    @FXML
+    private TableColumn<Department, String> countryCol;
+    @FXML
+    private TableColumn<Department, Integer> depIDCol;
+    @FXML
+    private TableColumn<Department, String> depNameCol;
+    @FXML
+    private Label labelOne;
+    @FXML
+    private TableColumn<Job, Integer> jobIDCol;
+    @FXML
+    private TableColumn<Job, String> jobTitleCol;
+    @FXML
+    private TableColumn<Job, Double> maxSalaryCol;
+    @FXML
+    private TableColumn<Job, Double> minSalaryCol;
+    @FXML
+    private TableView<Job> tvJobs;
+    @FXML
+    private ChoiceBox<Integer> choiceBoxDepID;
+    @FXML
+    private ChoiceBox<Integer> choiceBoxJobID;
 
     @FXML
     void onActionDepartmentID(ActionEvent event) {
@@ -128,11 +101,25 @@ public class ProfilePageController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle resource){
+        Employee selectedEmployee =  AppController.displayInformation();
+
+           try {
+               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\java\\com\\example\\demo\\pictures\\" +
+                       selectedEmployee.getEmployee_id() + ".jpg");
+               profilePictureBox.setImage(image);
+           }    catch (Exception e){
+               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\java\\com\\example\\demo\\pictures\\1250689.png");
+               profilePictureBox.setImage(image);
+               e.printStackTrace();
+           }
+
+
+
         /*
             Update Text fields after choosing the Employee
          */
 
-        Employee selectedEmployee =  AppController.displayInformation();
+
 
 
         EmployeeNameTF.setText(selectedEmployee.getFirst_name());
@@ -345,12 +332,35 @@ public class ProfilePageController implements Initializable {
         /*
         needs editing
          */
-        editDepID.setOnAction(event -> {
+        editDepID.setOnAction(event->{
+            try {
+                String updateStatement = "UPDATE employees " +
+                        "SET department_id = '"+ choiceBoxDepID.getValue() +"'" +
+                        "WHERE employee_id="+ EmployeeIDTF.getText();
+                Statement statement = connectDBS.createStatement();
+                statement.executeUpdate(updateStatement);
+                Alerts.throwInfoAlert("Employee Update","Employee information updated!","");
 
-
+            }  catch (Exception io){
+                Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
+                io.printStackTrace();
+            }
         });
         editJobID.setOnAction(event -> {
+            try {
+                String updateStatement = "UPDATE employees " +
+                        "SET job_id = '"+ choiceBoxJobID.getValue() +"'" +
+                        "WHERE employee_id="+ EmployeeIDTF.getText();
+                Statement statement = connectDBS.createStatement();
+                statement.executeUpdate(updateStatement);
+                Alerts.throwInfoAlert("Employee Update","Employee information updated!","");
+                updateStatement = "update employees a set a.job_title=(select b.job_title from jobs b where a.job_id = b.job_id);";
+                statement.executeUpdate(updateStatement);
 
+            }  catch (Exception io){
+                Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
+                io.printStackTrace();
+            }
         });
         /*
             finish editing
@@ -361,6 +371,12 @@ public class ProfilePageController implements Initializable {
 
 
 
+    }
+    private void setExtFilters(FileChooser chooser){
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
     }
 
     @FXML
