@@ -100,7 +100,7 @@
             </font>
          </Label>
          <VBox alignment="TOP_RIGHT" layoutX="27.0" layoutY="174.0" prefHeight="249.0" prefWidth="110.0">
-            <Label style="-fx-font-family: sansserif;" text="ID:">
+            <Label style="-fx-font-family: sanserif;" text="ID:">
                <font>
                   <Font size="15.0" />
                </font>

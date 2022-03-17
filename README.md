@@ -1,2 +1,2 @@
 # JavaHRDatabase
-Employee Database access for HR and Employeer
+Employee Database access for HR and Employer

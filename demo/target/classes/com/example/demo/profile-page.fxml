@@ -34,9 +34,6 @@
         <Menu fx:id="homePageBTN" mnemonicParsing="false" onAction="#GoToHomePage" style="-fx-font-color: red;" text="Home Page">
             <MenuItem mnemonicParsing="false" onAction="#GoToHomePage" text="Home Page" />
         </Menu>
-        <Menu mnemonicParsing="false" text="Settings">
-            <MenuItem mnemonicParsing="false" text="Sign out" />
-        </Menu>
     </MenuBar>
     <TabPane layoutX="841.0" layoutY="156.0" prefHeight="530.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
         <Tab text="Jobs">
@@ -67,7 +64,7 @@
             </AnchorPane>
         </Tab>
     </TabPane>
-   <Button fx:id="uploadPicture" layoutX="163.0" layoutY="441.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="102.0" text="Upload Picture" />
+   <Button fx:id="uploadPicture" disable="true" layoutX="163.0" layoutY="441.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="102.0" text="Upload Picture" visible="false" />
    <VBox layoutX="64.0" layoutY="201.0" prefHeight="220.0" prefWidth="220.0">
       <children>
       
@@ -77,7 +74,7 @@
                   <ColorAdjust />
               </effect>
             <image>
-               <Image url="@pictures/101.jpg" />
+               <Image url="@pictures/1250689.png" />
             </image>
           </ImageView>
       </children>
@@ -104,6 +101,14 @@
             <VBox.margin>
                <Insets top="22.0" />
             </VBox.margin>
+         </Label>
+         <Label text="Salary:">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <padding>
+               <Insets top="25.0" />
+            </padding>
          </Label>
          <Label text="Employee ID:">
             <font>
@@ -165,16 +170,19 @@
    </VBox>
    <TextField fx:id="EmployeeNameTF" editable="false" layoutX="537.0" layoutY="206.0" prefHeight="26.0" prefWidth="162.0" />
    <TextField fx:id="LastNameTF" editable="false" layoutX="537.0" layoutY="252.0" prefHeight="26.0" prefWidth="162.0" />
-   <TextField fx:id="EmployeeIDTF" editable="false" layoutX="537.0" layoutY="298.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="EmployeeIDTF" editable="false" layoutX="537.0" layoutY="341.0" prefHeight="26.0" prefWidth="162.0" />
    <Button fx:id="editEmpName" layoutX="715.0" layoutY="203.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
-   <TextField fx:id="PhoneNumberTF" editable="false" layoutX="537.0" layoutY="397.0" prefHeight="26.0" prefWidth="162.0" />
-   <TextField fx:id="EmailTF" editable="false" layoutX="537.0" layoutY="441.0" prefHeight="26.0" prefWidth="162.0" />
-   <Button fx:id="editPhoneNumber" layoutX="715.0" layoutY="393.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
-   <Button fx:id="editEmail" layoutX="715.0" layoutY="441.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
+   <TextField fx:id="PhoneNumberTF" editable="false" layoutX="537.0" layoutY="444.0" prefHeight="26.0" prefWidth="162.0" />
+   <TextField fx:id="EmailTF" editable="false" layoutX="537.0" layoutY="488.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editPhoneNumber" layoutX="715.0" layoutY="440.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
+   <Button fx:id="editEmail" layoutX="715.0" layoutY="488.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
    <Button fx:id="editEmpLastName" layoutX="715.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
-   <Button fx:id="deleteEmployee" layoutX="683.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="24.0" prefWidth="112.0" text="Delete Employee" />
-   <ChoiceBox fx:id="choiceBoxDepID" layoutX="537.0" layoutY="536.0" onMouseClicked="#onActionDepartmentID" prefHeight="26.0" prefWidth="162.0" />
-   <ChoiceBox fx:id="choiceBoxJobID" layoutX="537.0" layoutY="578.0" prefHeight="26.0" prefWidth="162.0" />
-   <Button fx:id="editDepID" layoutX="715.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
-   <Button fx:id="editJobID" layoutX="715.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
+   <Button fx:id="deleteEmployee" layoutX="677.0" layoutY="686.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="24.0" prefWidth="112.0" text="Delete Employee" />
+   <ChoiceBox fx:id="choiceBoxDepID" layoutX="537.0" layoutY="583.0" prefHeight="26.0" prefWidth="162.0" />
+   <ChoiceBox fx:id="choiceBoxJobID" layoutX="537.0" layoutY="625.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editDepID" layoutX="715.0" layoutY="583.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
+   <Button fx:id="editJobID" layoutX="715.0" layoutY="625.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Confirm" />
+   <Button layoutX="64.0" layoutY="686.0" mnemonicParsing="false" onAction="#GoToHomePage" prefHeight="24.0" prefWidth="74.0" text="Go Back" />
+   <TextField fx:id="SalaryTF" editable="false" layoutX="537.0" layoutY="298.0" prefHeight="26.0" prefWidth="162.0" />
+   <Button fx:id="editSalary" layoutX="715.0" layoutY="298.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Edit" />
 </AnchorPane>

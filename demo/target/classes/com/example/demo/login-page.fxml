@@ -58,7 +58,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../java/com/example/demo/pictures/logo-dark.png" />
+                  <Image url="@pictures/logo-dark.png" />
                </image>
             </ImageView>
          </children>

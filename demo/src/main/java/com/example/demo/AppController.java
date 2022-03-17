@@ -300,7 +300,7 @@ public class AppController implements Initializable{
     }
 
     @FXML
-    void addEmployee(ActionEvent event) throws Exception {
+    void addEmployee(ActionEvent event){
 
         Stage stage = App.newWindow("new-employee-tab", "New Employee Tab");
         assert stage != null;

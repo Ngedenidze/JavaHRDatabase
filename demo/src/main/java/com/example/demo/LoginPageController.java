@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -40,19 +39,16 @@ public class LoginPageController implements Initializable {
     }
 
 
-
+//TODO FIX IMAGES
     public void loginInitialize() {
-
-
-        LoginDBC connectNow = new LoginDBC();
-        Connection connectDBS = connectNow.getConnection();
+        Connection connectDBS = LoginDBC.getConnection();
 
         try {
             String verifyLoginQuery = "select count(1) from users where username='"
                     + usernameTextField.getText()+"' and password = SHA2(CONCAT('"+
                     passwordTextField.getText() +"','241'),256)";
 
-            ResultSet resultSet = LoginDBC.getResultSet(verifyLoginQuery);;
+            ResultSet resultSet = LoginDBC.getResultSet(verifyLoginQuery);
 
             while (resultSet.next()){
                 if (resultSet.getInt(1) == 1){

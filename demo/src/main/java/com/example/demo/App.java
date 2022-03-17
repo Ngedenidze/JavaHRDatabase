@@ -7,10 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
+
 
 /**
  * Application start class
@@ -28,7 +27,7 @@ public class App extends Application {
         App.stage = stage;
         scene = new Scene(fxmlLoader.load());
         stage.setTitle("Employee Management");
-        Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\java\\com\\example\\demo\\pictures\\icon.png");
+        Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\icon.png");
         stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
@@ -49,7 +48,7 @@ public class App extends Application {
     /**
      * load fxml from in other class files
      * @param fxml file name
-     * @return  fxmlloader for the file
+     * @return  fxml-loader for the file
      * @throws IOException  input output error
      */
     private static Parent loadFXML(String fxml) throws IOException {

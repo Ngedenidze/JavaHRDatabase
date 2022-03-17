@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -32,6 +32,7 @@ public class ProfilePageController implements Initializable {
     ObservableList<Department> departmentSearchObservableList = FXCollections.observableArrayList();
     ObservableList<Integer> departmentIDObservableList = FXCollections.observableArrayList();
     ObservableList<Integer> jobIDObservableList = FXCollections.observableArrayList();
+
     @FXML
     private ImageView profilePictureBox;
     @FXML
@@ -44,6 +45,8 @@ public class ProfilePageController implements Initializable {
     private TextField LastNameTF;
     @FXML
     private TextField PhoneNumberTF;
+    @FXML
+    private TextField SalaryTF;
     @FXML
     private Button deleteEmployee;
     @FXML
@@ -58,6 +61,8 @@ public class ProfilePageController implements Initializable {
     private Button editJobID;
     @FXML
     private Button editPhoneNumber;
+    @FXML
+    private Button editSalary;
     @FXML
     private Menu homePageBTN;
     @FXML
@@ -95,23 +100,19 @@ public class ProfilePageController implements Initializable {
     @FXML
     private ChoiceBox<Integer> choiceBoxJobID;
 
-    @FXML
-    void onActionDepartmentID(ActionEvent event) {
-        editDepID.setVisible(true);
-    }
-
     public void initialize(URL url, ResourceBundle resource){
         Employee selectedEmployee =  AppController.displayInformation();
 
            try {
-               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\java\\com\\example\\demo\\pictures\\" +
+               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\" +
                        selectedEmployee.getEmployee_id() + ".jpg");
                profilePictureBox.setImage(image);
            }    catch (Exception e){
-               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\java\\com\\example\\demo\\pictures\\1250689.png");
+               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\1250689.png");
                profilePictureBox.setImage(image);
                e.printStackTrace();
            }
+           //TODO FIX UPLOAD IMAGE
 
 
 
@@ -124,6 +125,7 @@ public class ProfilePageController implements Initializable {
 
         EmployeeNameTF.setText(selectedEmployee.getFirst_name());
         LastNameTF.setText(selectedEmployee.getLast_name());
+        SalaryTF.setText(String.valueOf(selectedEmployee.getSalary()));
         EmployeeIDTF.setText(selectedEmployee.getEmployee_id().toString());
         PhoneNumberTF.setText(selectedEmployee.getPhone_number());
         EmailTF.setText(selectedEmployee.getEmail());
@@ -274,6 +276,45 @@ public class ProfilePageController implements Initializable {
                     editEmpLastName.setText("Edit");
                     Alerts.throwInfoAlert("Employee Update","Employee information updated!","");
 
+                }  catch (Exception io){
+                    Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
+                    io.printStackTrace();
+                }
+
+            }
+
+        });
+        editSalary.setOnAction(event -> {
+            if (editSalary.getText().contains("Edit")) {
+                SalaryTF.setEditable(true);
+                editSalary.setText("Confirm");
+            } else{
+                try {
+                    double maxSalary = 0.00;
+                    double minSalary = 0.00;
+                    String salaryRangeCheck = "SELECT * FROM jobs where job_id = " + selectedEmployee.getJob_id();
+                    ResultSet salaryRange = EmployeeDBC.getResultSet(salaryRangeCheck);
+
+                    while(salaryRange.next()){
+                        minSalary = salaryRange.getDouble("min_salary");
+                        maxSalary = salaryRange.getDouble("max_salary");
+                    }
+                    if(Double.parseDouble(SalaryTF.getText())< minSalary ||
+                        Double.parseDouble(SalaryTF.getText())> maxSalary){
+                        Alerts.errorInfoAlert("Salary out of range!", "Salary is out of range!",
+                                "Employee salary should be in range of minimum and maximum salary.");
+                    }
+
+                    else {
+                        String updateStatement = "UPDATE employees " +
+                                "SET salary = '" + SalaryTF.getText() + "'" +
+                                "WHERE employee_id=" + EmployeeIDTF.getText();
+                        Statement statement = connectDBS.createStatement();
+                        statement.executeUpdate(updateStatement);
+                        SalaryTF.setEditable(false);
+                        editSalary.setText("Edit");
+                        Alerts.throwInfoAlert("Employee Update", "Employee information updated!", "");
+                    }
                 }  catch (Exception io){
                     Alerts.errorInfoAlert("Wrong input!","Wrong input type in text fields!","One or more inputs have wrong type! Try again!");
                     io.printStackTrace();
