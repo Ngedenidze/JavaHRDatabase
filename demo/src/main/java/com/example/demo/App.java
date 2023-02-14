@@ -27,8 +27,8 @@ public class App extends Application {
         App.stage = stage;
         scene = new Scene(fxmlLoader.load());
         stage.setTitle("Employee Management");
-        Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\icon.png");
-        stage.getIcons().add(image);
+        // Image image = new Image("");
+        // stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
     }
@@ -71,8 +71,8 @@ public class App extends Application {
             stage.setTitle(pageTitle);
             stage.setScene(new Scene(root, 600, 400));
             stage.show();
-            Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\icon.png");
-            stage.getIcons().add(image);
+            // Image image = new Image("");
+            // stage.getIcons().add(image);
             return stage;
             // Hide this current window (if this is what you want)
         }

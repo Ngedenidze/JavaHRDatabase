@@ -69,13 +69,7 @@ public class Alerts {
         alert.initStyle(StageStyle.UTILITY);
         alert.showAndWait();
         return  alert;
-        /*This Is how to use alert
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }*/
+        
     }
 
 
