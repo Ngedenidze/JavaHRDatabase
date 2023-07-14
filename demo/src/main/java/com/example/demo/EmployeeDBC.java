@@ -13,10 +13,10 @@ public class EmployeeDBC {
         returns connection with database
      */
     public static Connection getConnection() {
-        String databaseName = "new_schema";
-        String dbPassword = "Thegafield_123";
-        String dbUsername = "root";
-        String url = "jdbc:mysql://localhost:3400/" + databaseName;
+        String databaseName = "employeedatabase";
+        String dbPassword = "Sabae_123!";
+        String dbUsername = "root1";
+        String url = "jdbc:mysql://localhost:3306/" + databaseName;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
