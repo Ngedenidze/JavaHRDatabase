@@ -103,15 +103,15 @@ public class ProfilePageController implements Initializable {
     public void initialize(URL url, ResourceBundle resource){
         Employee selectedEmployee =  AppController.displayInformation();
 
-           try {
-               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\" +
-                       selectedEmployee.getEmployee_id() + ".jpg");
-               profilePictureBox.setImage(image);
-           }    catch (Exception e){
-               Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\1250689.png");
-               profilePictureBox.setImage(image);
-               e.printStackTrace();
-           }
+        //    try {
+        //        Image image = new Image("C:\\Users\\ngede\\OneDrive\\Desktop\\CS\\CS196\\HRDatabase\\JavaHRDatabase\\demo\\src\\main\\resources\\com\\example\\demo\\pictures\\" +
+        //                selectedEmployee.getEmployee_id() + ".jpg");
+        //        profilePictureBox.setImage(image);
+        //    }    catch (Exception e){
+        //        Image image = new Image("");
+        //        profilePictureBox.setImage(image);
+        //        e.printStackTrace();
+        //    }
            //TODO FIX UPLOAD IMAGE
 
 

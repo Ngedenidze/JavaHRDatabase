@@ -149,7 +149,7 @@ public class NewEmployeeController implements Initializable {
             e.printStackTrace();
         }
 
-        ManagerIdObsList.remove(0);
+        // ManagerIdObsList.remove(0);
         managerIDChoBox.setItems(ManagerIdObsList);
 
 
